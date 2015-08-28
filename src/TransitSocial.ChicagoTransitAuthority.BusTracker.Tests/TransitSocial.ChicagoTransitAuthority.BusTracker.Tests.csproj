@@ -52,6 +52,10 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BusTrackerClientTests.cs" />
+    <Compile Include="Resources\ResourceFiles.cs" />
+    <Compile Include="Resources\ResourceRepository.cs" />
+    <Compile Include="Resources\ResourceRepositoryTests.cs" />
+    <Compile Include="SerializerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\GetTime\gettime-response.xml" />
