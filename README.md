@@ -1,2 +1,2 @@
 # TransitSocial.ChicagoTransitAuthority
-c# client library for CTA (Chicago Transit Authority) services
+c# client library for CTA (Chicago Transit Authority) services.
