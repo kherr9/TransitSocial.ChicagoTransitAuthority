@@ -1,12 +1,12 @@
 ﻿using System;
+using System.Xml.Serialization;
 
 namespace TransitSocial.ChicagoTransitAuthority.BusTracker
 {
-    /// <remarks/>
     [Serializable]
-    public class Error
+    public class GetTimeError
     {
-        [System.Xml.Serialization.XmlElementAttribute("msg", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [XmlElement("msg", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public string Message { get; set; }
     }
 }

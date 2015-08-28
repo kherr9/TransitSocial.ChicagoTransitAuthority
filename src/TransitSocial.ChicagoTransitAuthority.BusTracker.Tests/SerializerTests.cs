@@ -21,7 +21,7 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
             this.serializer = new Serializer();
         }
 
-        #region "BusTimeResponse"
+        #region "GetTimeResponse"
 
         [TestMethod]
         public void TestDeserializeBusTimeResponse()
@@ -30,12 +30,12 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
             var xml = this.repository.GetString(ResourceFiles.GetTimeResponse);
 
             // Act
-            var response = this.serializer.Deserialize<BusTimeResponse>(xml);
+            var response = this.serializer.Deserialize<GetTimeResponse>(xml);
 
             // Assert
             Assert.IsNotNull(response);
             Assert.AreEqual("20090611 14:42:32", response.Time);
-            Assert.IsNull(response.Error);
+            Assert.IsNull(response.Errors);
         }
 
         [TestMethod]
@@ -45,14 +45,14 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
             var xml = this.repository.GetString(ResourceFiles.GetTimeResponseInvalidApiAccess);
 
             // Act
-            var response = this.serializer.Deserialize<BusTimeResponse>(xml);
+            var response = this.serializer.Deserialize<GetTimeResponse>(xml);
 
             // Assert
             Assert.IsNotNull(response);
             Assert.IsNull(response.Time);
-            Assert.IsNotNull(response.Error);
-            Assert.AreEqual(1, response.Error.Count());
-            Assert.AreEqual("Invalid API access key supplied", response.Error.Single().Message);
+            Assert.IsNotNull(response.Errors);
+            Assert.AreEqual(1, response.Errors.Count());
+            Assert.AreEqual("Invalid API access key supplied", response.Errors.Single().Message);
         }
 
         #endregion

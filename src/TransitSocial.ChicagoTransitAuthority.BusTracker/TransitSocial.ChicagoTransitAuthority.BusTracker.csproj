@@ -39,9 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BusTimeResponse.cs" />
+    <Compile Include="GetTimeResponse.cs" />
     <Compile Include="BusTrackerClient.cs" />
-    <Compile Include="Error.cs" />
+    <Compile Include="GetTimeError.cs" />
     <Compile Include="IBusTrackerClient.cs" />
     <Compile Include="ISerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
