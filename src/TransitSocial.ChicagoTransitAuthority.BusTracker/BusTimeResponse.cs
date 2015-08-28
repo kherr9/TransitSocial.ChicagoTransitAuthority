@@ -1,17 +1,16 @@
-﻿namespace TransitSocial.ChicagoTransitAuthority.BusTracker
+﻿using System.Xml.Serialization;
+
+namespace TransitSocial.ChicagoTransitAuthority.BusTracker
 {
-    /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(TypeName = "bustime-response")]
-    [System.Xml.Serialization.XmlRootAttribute("bustime-response", Namespace = "", IsNullable = false)]
+    [XmlTypeAttribute(TypeName = "bustime-response")]
     public class BusTimeResponse
     {
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("error", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [XmlElement("error")]
         public Error[] Error { get; set; }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("tm")]
+        [XmlElementAttribute("tm")]
         public string Time { get; set; }
     }
 }

@@ -60,6 +60,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\GetTime\gettime-response.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TransitSocial.ChicagoTransitAuthority.BusTracker\TransitSocial.ChicagoTransitAuthority.BusTracker.csproj">
+      <Project>{bf83a67f-088b-41c2-aff9-f7755b2f5914}</Project>
+      <Name>TransitSocial.ChicagoTransitAuthority.BusTracker</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\GetTime\gettime-response-invalidapiaccess.xml" />
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
