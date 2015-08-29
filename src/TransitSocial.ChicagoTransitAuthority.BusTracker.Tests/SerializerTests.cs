@@ -56,5 +56,68 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
         }
 
         #endregion
+
+        #region "GetVehicles"
+
+        [TestMethod]
+        public void TestDeserializeGetVehicles()
+        {
+            // Arrange
+            var xml = this.repository.GetString(ResourceFiles.GetVehiclesResponse);
+
+            // Act
+            var response = this.serializer.Deserialize<GetVehiclesResponse>(xml);
+
+            // Assert
+            Assert.IsNotNull(response);
+            Assert.IsNotNull(response.Vehicles);
+            Assert.AreEqual(2, response.Vehicles.Length);
+            var v1 = response.Vehicles[0];
+            Assert.AreEqual("509", v1.VehicleId);
+            Assert.AreEqual("20090611 10:28", v1.TimeStamp);
+            Assert.AreEqual(41.92124938964844, v1.Latitude);
+            Assert.AreEqual(-87.64849853515625, v1.Longitude);
+            Assert.AreEqual(358, v1.Heading);
+            Assert.AreEqual(3630, v1.PatternId);
+            Assert.AreEqual(5678, v1.PatternDistance);
+            Assert.AreEqual("8", v1.Route);
+            Assert.AreEqual("Waveland/Broadway", v1.Destination);
+            Assert.AreEqual(false, v1.IsDelayed);
+            var v2 = response.Vehicles[1];
+            Assert.AreEqual("392", v2.VehicleId);
+            Assert.AreEqual("20090611 10:28", v2.TimeStamp);
+            Assert.AreEqual(41.91095733642578, v2.Latitude);
+            Assert.AreEqual(-87.64120713719782, v2.Longitude);
+            Assert.AreEqual(88, v2.Heading);
+            Assert.AreEqual(1519, v2.PatternId);
+            Assert.AreEqual(11203, v2.PatternDistance);
+            Assert.AreEqual("72", v2.Route);
+            Assert.AreEqual("Clark", v2.Destination);
+            Assert.AreEqual(false, v2.IsDelayed);
+            Assert.IsNull(response.Errors);
+        }
+
+        [TestMethod]
+        public void TestDeserializeGetVehiclesInvalidApiAccess()
+        {
+            // Arrange
+            var xml = this.repository.GetString(ResourceFiles.GetVehiclesResponseInvalidApiAccess);
+
+            // Act
+            var response = this.serializer.Deserialize<GetVehiclesResponse>(xml);
+
+            // Assert
+            Assert.IsNotNull(response);
+            Assert.IsNull(response.Vehicles);
+            Assert.IsNotNull(response.Errors);
+            Assert.AreEqual(1, response.Errors.Length);
+            var error = response.Errors[0];
+            Assert.AreEqual("Invalid API access key supplied", error.Message);
+            Assert.IsNull(error.Route);
+            Assert.IsNull(error.VehicleId);
+        }
+
+
+        #endregion
     }
 }

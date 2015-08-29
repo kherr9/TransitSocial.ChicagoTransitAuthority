@@ -1,0 +1,25 @@
+﻿<?xml version="1.0"?>
+<bustime-response>
+  <vehicle>
+    <vid>509</vid>
+    <tmstmp>20090611 10:28</tmstmp>
+    <lat>41.92124938964844</lat>
+    <lon>-87.64849853515625</lon>
+    <hdg>358</hdg>
+    <pid>3630</pid>
+    <pdist>5678</pdist>
+    <rt>8</rt>
+    <des>Waveland/Broadway</des>
+  </vehicle>
+  <vehicle>
+    <vid>392</vid>
+    <tmstmp>20090611 10:28</tmstmp>
+    <lat>41.91095733642578</lat>
+    <lon>-87.64120713719782</lon>
+    <hdg>88</hdg>
+    <pid>1519</pid>
+    <pdist>11203</pdist>
+    <rt>72</rt>
+    <des>Clark</des>
+  </vehicle>
+</bustime-response>

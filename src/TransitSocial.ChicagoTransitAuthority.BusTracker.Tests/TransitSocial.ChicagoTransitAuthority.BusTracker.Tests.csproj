@@ -69,6 +69,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\GetTime\gettime-response-invalidapiaccess.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\GetVehicles\getvehicles-response.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\GetVehicles\getvehicles-response-invalidapiaccess.xml" />
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
