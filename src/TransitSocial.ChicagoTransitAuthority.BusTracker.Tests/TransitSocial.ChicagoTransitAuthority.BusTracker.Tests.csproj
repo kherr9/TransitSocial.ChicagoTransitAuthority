@@ -58,6 +58,7 @@
     <Compile Include="SerializerTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\GetRoutes\getroutes-response.xml" />
     <EmbeddedResource Include="Resources\GetTime\gettime-response.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -74,6 +75,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\GetVehicles\getvehicles-response-invalidapiaccess.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\GetRoutes\getroutes-response-invalidapiaccess.xml" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

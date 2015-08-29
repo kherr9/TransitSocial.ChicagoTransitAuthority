@@ -9,5 +9,9 @@
         // GetVehicles
         public const string GetVehiclesResponse = "GetVehicles.getvehicles-response.xml";
         public const string GetVehiclesResponseInvalidApiAccess = "GetVehicles.getvehicles-response-invalidapiaccess.xml";
+
+        // GetRoutes
+        public const string GetRoutesResponse = "GetRoutes.getroutes-response.xml";
+        public const string GetRoutesResponseInvalidApiAccess = "GetRoutes.getroutes-response-invalidapiaccess.xml";
     }
 }
