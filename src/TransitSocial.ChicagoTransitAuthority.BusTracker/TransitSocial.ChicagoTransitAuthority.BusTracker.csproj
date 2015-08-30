@@ -50,6 +50,7 @@
     <Compile Include="GetVehiclesResponse.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="HttpWebRequestExtensions.cs" />
     <Compile Include="IBusTrackerClient.cs" />
     <Compile Include="ISerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
