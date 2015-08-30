@@ -5,6 +5,8 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests.Resources
 {
     public class ResourceRepository
     {
+        private readonly Serializer serializer = new Serializer();
+
         public string GetString(string path)
         {
             using (var stream = this.GetStream(path))
@@ -12,6 +14,13 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests.Resources
             {
                 return streamReader.ReadToEnd();
             }
+        }
+
+        public TModel GetAs<TModel>(string path)
+        {
+            var xml = this.GetString(path);
+
+            return this.serializer.Deserialize<TModel>(xml);
         }
 
         private Stream GetStream(string path)

@@ -16,5 +16,14 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker
                 return (TModel)ser.Deserialize(xmlReader);
             }
         }
+
+        public TModel Deserialize<TModel>(Stream source)
+        {
+            using (var xmlReader = XmlReader.Create(source))
+            {
+                var ser = new XmlSerializer(typeof(TModel));
+                return (TModel)ser.Deserialize(xmlReader);
+            }
+        }
     }
 }
