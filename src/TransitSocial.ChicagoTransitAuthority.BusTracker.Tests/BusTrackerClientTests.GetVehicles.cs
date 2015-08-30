@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,13 +13,13 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
     public partial class BusTrackerClientTests
     {
         [TestMethod]
-        public void TestGetTimeInvalidApiToken()
+        public void TestGetVehiclesInvalidApiToken()
         {
             // Arrange
             const string InvalidApiToken = "INVALID_API_TOKEN";
             var client = new BusTrackerClient(UrlBase, InvalidApiToken);
 
-            var expectedModel = this.repository.GetAs<GetTimeResponse>(ResourceFiles.GetTimeResponseInvalidApiAccess);
+            var expectedModel = this.repository.GetAs<GetVehiclesResponse>(ResourceFiles.GetVehiclesResponseInvalidApiAccess);
 
             Exception exception = null;
 
@@ -27,7 +29,7 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
                 {
                     try
                     {
-                        var time = client.GetTime();
+                        var vehicles = client.GetVehicles(Enumerable.Empty<string>(), Enumerable.Empty<string>());
                         Assert.Fail("Exception thrown exception");
                     }
                     catch (Exception ex)
@@ -44,26 +46,29 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
         }
 
         [TestMethod]
-        public void TestGetTime()
+        public void TestGetVehicles()
         {
             // Arrange
             var client = new BusTrackerClient(UrlBase, WebAppConfig.ApiKey);
 
-            var expectedModel = this.repository.GetAs<GetTimeResponse>(ResourceFiles.GetTimeResponse);
+            var expectedModel = this.repository.GetAs<GetVehiclesResponse>(ResourceFiles.GetVehiclesResponse);
 
-            string time = null;
+            IEnumerable<Vehicle> vehicles = null;
 
             // Act
             StartOwinTest(
                 () =>
                 {
-                    time = client.GetTime();
+                    vehicles = client.GetVehicles(Enumerable.Empty<string>(), Enumerable.Empty<string>());
 
                     return Task.FromResult(true);
                 });
 
             // Assert
-            Assert.AreEqual(time, expectedModel.Time);
+            var expectedVehicleIds = expectedModel.Vehicles.Select(v => v.VehicleId).ToList();
+            var actualVehicleIds = vehicles.Select(v => v.VehicleId).ToList();
+
+            CollectionAssert.AreEqual(expectedVehicleIds, actualVehicleIds);
         }
     }
 }

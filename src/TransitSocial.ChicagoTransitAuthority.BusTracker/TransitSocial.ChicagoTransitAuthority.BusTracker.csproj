@@ -39,6 +39,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusTrackerClient.GetTime.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BusTrackerClient.GetTimeAsync.cs" />
+    <Compile Include="BusTrackerClient.GetVehiclesAsync.cs" />
+    <Compile Include="BusTrackerClient.GetVehicles.cs" />
     <Compile Include="GetRoutesError.cs" />
     <Compile Include="GetRoutesResponse.cs" />
     <Compile Include="GetTimeResponse.cs" />

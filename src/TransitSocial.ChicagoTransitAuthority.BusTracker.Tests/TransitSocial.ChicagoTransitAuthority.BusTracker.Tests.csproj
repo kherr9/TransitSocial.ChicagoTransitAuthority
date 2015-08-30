@@ -78,6 +78,7 @@
     <Compile Include="Resources\ResourceRepositoryTests.cs" />
     <Compile Include="SerializerTests.cs" />
     <Compile Include="BusTrackerClientTests.GetTime.cs" />
+    <Compile Include="BusTrackerClientTests.GetVehicles.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\GetRoutes\getroutes-response.xml" />

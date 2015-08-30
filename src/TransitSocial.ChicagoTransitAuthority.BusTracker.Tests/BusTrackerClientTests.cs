@@ -114,15 +114,22 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
                             });
                     });
 
-                appBuilder.Map("",
+                appBuilder.Map("/bustime/api/v1/getvehicles",
                     map =>
                     {
-                        map.Run(ctx =>
+                        map.Run(
+                            async ctx =>
                             {
-                                // status code
-                                ctx.Response.StatusCode = 404;
+                                var xml = repository.GetString(ResourceFiles.GetVehiclesResponse);
 
-                                return Task.FromResult(true);
+                                // status code
+                                ctx.Response.StatusCode = 200;
+
+                                // headers
+                                ctx.Response.Headers.Add("Content-Type", new[] { "text/xml;charset=utf-8" });
+
+                                // content
+                                await ctx.Response.WriteAsync(xml);
                             });
                     });
             }
