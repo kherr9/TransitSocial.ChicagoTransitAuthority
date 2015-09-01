@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Net;
 using System.Threading;
@@ -11,7 +12,7 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker
     {
         public IEnumerable<Vehicle> GetVehicles(IEnumerable<string> vehicleIds, IEnumerable<string> routeIds)
         {
-            var request = this.CreateRequest("/bustime/api/v1/getvehicles", this.CreateGetVehiclesQueryString(vehicleIds, routeIds));
+            var request = this.CreateRequest("/bustime/api/v1/getvehicles", CreateGetVehiclesQueryString(vehicleIds, routeIds));
 
             request.Method = "GET";
 
@@ -42,7 +43,7 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker
 
         public async Task<IEnumerable<Vehicle>> GetVehiclesAsync(IEnumerable<string> vehicleIds, IEnumerable<string> routeIds, CancellationToken token)
         {
-            var request = this.CreateRequest("/bustime/api/v1/getvehicles", this.CreateGetVehiclesQueryString(vehicleIds, routeIds));
+            var request = this.CreateRequest("/bustime/api/v1/getvehicles", CreateGetVehiclesQueryString(vehicleIds, routeIds));
 
             request.Method = "GET";
 
@@ -66,21 +67,31 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker
             }
         }
 
-        internal string CreateGetVehiclesQueryString(IEnumerable<string> vehicleIds, IEnumerable<string> routeIds)
+        public static NameValueCollection CreateGetVehiclesQueryString(IEnumerable<string> vehicleIds, IEnumerable<string> routeIds)
         {
-            var temp = string.Empty;
+            var queryString = CreateQueryStringCollection();
 
             if (vehicleIds != null)
             {
-                temp += string.Format("&{0}={1}", "Vid", string.Join(",", vehicleIds));
+                var value = string.Join(",", vehicleIds);
+
+                if (value != string.Empty)
+                {
+                    queryString.Add("vid", value);
+                }
             }
 
             if (routeIds != null)
             {
-                temp += string.Format("&{0}={1}", "Rt", string.Join(",", routeIds));
+                var value = string.Join(",", routeIds);
+
+                if (value != string.Empty)
+                {
+                    queryString.Add("rt", value);
+                }
             }
 
-            return temp;
+            return queryString;
         }
     }
 }

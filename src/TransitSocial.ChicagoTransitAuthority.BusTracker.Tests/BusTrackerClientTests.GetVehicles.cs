@@ -70,5 +70,130 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
 
             CollectionAssert.AreEqual(expectedVehicleIds, actualVehicleIds);
         }
+
+        #region "CreateGetVehiclesQueryString"
+
+        [TestMethod]
+        public void TestCreateGetVehiclesQueryStringWhenEmpty()
+        {
+            // Arrange
+            var vehicledIds = Enumerable.Empty<string>();
+            var routeIds = Enumerable.Empty<string>();
+
+            // Act
+            var collection = BusTrackerClient.CreateGetVehiclesQueryString(vehicledIds, routeIds);
+
+            // Assert
+            Assert.IsNotNull(collection);
+            Assert.AreEqual("", collection.ToString());
+        }
+
+        [TestMethod]
+        public void TestCreateGetVehiclesQueryWhenVehiclesIsNull()
+        {
+            // Arrange
+            IEnumerable<string> vehicledIds = null;
+            var routeIds = Enumerable.Empty<string>();
+
+            // Act
+            var collection = BusTrackerClient.CreateGetVehiclesQueryString(vehicledIds, routeIds);
+
+            // Assert
+            Assert.IsNotNull(collection);
+            Assert.AreEqual("", collection.ToString());
+        }
+
+        [TestMethod]
+        public void TestCreateGetVehiclesQueryWhenSingleVehicleId()
+        {
+            // Arrange
+            var vehicledIds = new[]
+                                  {
+                                      "123123"
+                                  };
+            var routeIds = Enumerable.Empty<string>();
+
+            // Act
+            var collection = BusTrackerClient.CreateGetVehiclesQueryString(vehicledIds, routeIds);
+
+            // Assert
+            Assert.IsNotNull(collection);
+            Assert.AreEqual("vid=123123", collection.ToString());
+        }
+
+        [TestMethod]
+        public void TestCreateGetVehiclesQueryWhenMultipleVehicleId()
+        {
+            // Arrange
+            var vehicledIds = new[]
+                                  {
+                                      "1111",
+                                      "2222",
+                                      "N 333"
+                                  };
+            var routeIds = Enumerable.Empty<string>();
+
+            // Act
+            var collection = BusTrackerClient.CreateGetVehiclesQueryString(vehicledIds, routeIds);
+
+            // Assert
+            Assert.IsNotNull(collection);
+            Assert.AreEqual("vid=1111%2c2222%2cN+333", collection.ToString());
+        }
+
+        [TestMethod]
+        public void TestCreateGetVehiclesQueryWhenRoutesIsNull()
+        {
+            // Arrange
+            IEnumerable<string> vehicledIds = Enumerable.Empty<string>();
+            IEnumerable<string> routeIds = null;
+
+            // Act
+            var collection = BusTrackerClient.CreateGetVehiclesQueryString(vehicledIds, routeIds);
+
+            // Assert
+            Assert.IsNotNull(collection);
+            Assert.AreEqual("", collection.ToString());
+        }
+
+        [TestMethod]
+        public void TestCreateGetVehiclesQueryWhenSingleRouteId()
+        {
+            // Arrange
+            var vehicledIds = Enumerable.Empty<string>();
+            var routeIds = new[]
+                                  {
+                                      "123123"
+                                  };
+
+            // Act
+            var collection = BusTrackerClient.CreateGetVehiclesQueryString(vehicledIds, routeIds);
+
+            // Assert
+            Assert.IsNotNull(collection);
+            Assert.AreEqual("rt=123123", collection.ToString());
+        }
+
+        [TestMethod]
+        public void TestCreateGetVehiclesQueryWhenMultipleRouteId()
+        {
+            // Arrange
+            var vehicledIds = Enumerable.Empty<string>();
+            var routeIds = new[]
+                                  {
+                                      "1111",
+                                      "2222",
+                                      "N 333"
+                                  };
+
+            // Act
+            var collection = BusTrackerClient.CreateGetVehiclesQueryString(vehicledIds, routeIds);
+
+            // Assert
+            Assert.IsNotNull(collection);
+            Assert.AreEqual("rt=1111%2c2222%2cN+333", collection.ToString());
+        }
+
+        #endregion
     }
 }

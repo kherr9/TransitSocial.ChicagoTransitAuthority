@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Specialized;
 using System.Net;
 
 namespace TransitSocial.ChicagoTransitAuthority.BusTracker
@@ -28,23 +29,27 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker
 
         public ISerializer Serializer { get; set; }
 
-        private HttpWebRequest CreateRequest(string relativePath, string queryString = null)
+        private HttpWebRequest CreateRequest(string relativePath, NameValueCollection queryStringCollection = null)
         {
             if (relativePath == null)
             {
                 throw new ArgumentNullException("relativePath");
             }
 
-            var uri = this.urlBase + relativePath + "?key=" + this.key;
+            queryStringCollection = queryStringCollection ?? CreateQueryStringCollection();
 
-            if (queryString != null)
-            {
-                uri += queryString;
-            }
+            queryStringCollection.Add("key", this.key);
+
+            var uri = this.urlBase + relativePath + "?" + queryStringCollection.ToString();
 
             var request = WebRequest.CreateHttp(uri);
 
             return request;
+        }
+
+        private static NameValueCollection CreateQueryStringCollection()
+        {
+            return System.Web.HttpUtility.ParseQueryString(string.Empty);
         }
     }
 }
