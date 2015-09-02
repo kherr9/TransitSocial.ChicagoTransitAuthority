@@ -43,6 +43,7 @@
     <Compile Include="BusTrackerClient.GetTime.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BusTrackerClient.GetRoutes.cs" />
     <Compile Include="BusTrackerClient.GetVehicles.cs" />
     <Compile Include="GetRoutesError.cs" />
     <Compile Include="GetRoutesResponse.cs" />

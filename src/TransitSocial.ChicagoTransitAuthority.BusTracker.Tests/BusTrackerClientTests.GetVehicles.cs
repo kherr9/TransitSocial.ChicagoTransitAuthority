@@ -193,9 +193,10 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
                 });
 
             // Assert
-            Assert.IsNotNull(vehicles);
-            Assert.AreEqual(vehicles.Length, expectedModel.Vehicles.Length);
-            Assert.AreEqual(vehicles[0].VehicleId, expectedModel.Vehicles[0].VehicleId);
+            var expectedVehicleIds = expectedModel.Vehicles.Select(v => v.VehicleId).ToList();
+            var actualVehicleIds = vehicles.Select(v => v.VehicleId).ToList();
+
+            CollectionAssert.AreEqual(expectedVehicleIds, actualVehicleIds);
         }
 
         [TestMethod]
@@ -218,9 +219,10 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
                 });
 
             // Assert
-            Assert.IsNotNull(vehicles);
-            Assert.AreEqual(vehicles.Length, expectedModel.Vehicles.Length);
-            Assert.AreEqual(vehicles[0].VehicleId, expectedModel.Vehicles[0].VehicleId);
+            var expectedVehicleIds = expectedModel.Vehicles.Select(v => v.VehicleId).ToList();
+            var actualVehicleIds = vehicles.Select(v => v.VehicleId).ToList();
+
+            CollectionAssert.AreEqual(expectedVehicleIds, actualVehicleIds);
         }
 
         [TestMethod]

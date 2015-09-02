@@ -68,5 +68,24 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker
         /// on a request to getvehicles, only the first parameter specified on the request will be processed.
         /// </remarks>
         Task<IEnumerable<Vehicle>> GetVehiclesAsync(IEnumerable<string> vehicleIds, IEnumerable<string> routeIds, CancellationToken token);
+
+        /// <summary>
+        /// Use the getroutes request to retrieve the set of routes serviced by the system.
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<Route> GetRoutes();
+
+        /// <summary>
+        /// Use the getroutes request to retrieve the set of routes serviced by the system.
+        /// </summary>
+        /// <returns></returns>
+        Task<IEnumerable<Route>> GetRoutesAsync();
+
+        /// <summary>
+        /// Use the getroutes request to retrieve the set of routes serviced by the system.
+        /// </summary>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        Task<IEnumerable<Route>> GetRoutesAsync(CancellationToken token);
     }
 }
