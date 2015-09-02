@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -12,6 +13,8 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
 {
     public partial class BusTrackerClientTests
     {
+        #region "GetVehicles"
+
         [TestMethod]
         public void TestGetVehiclesInvalidApiToken()
         {
@@ -70,6 +73,189 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
 
             CollectionAssert.AreEqual(expectedVehicleIds, actualVehicleIds);
         }
+
+        #endregion
+
+        #region "GetVehiclesAsync"
+
+        [TestMethod]
+        public void TestGetVehiclesAsyncInvalidApiToken()
+        {
+            // Arrange
+            const string InvalidApiToken = "INVALID_API_TOKEN";
+            var client = new BusTrackerClient(UrlBase, InvalidApiToken);
+
+            var expectedModel = this.repository.GetAs<GetVehiclesResponse>(ResourceFiles.GetVehiclesResponseInvalidApiAccess);
+
+            Exception exception = null;
+
+            // Act
+            StartOwinTest(
+                async () =>
+                {
+                    try
+                    {
+                        var vehicles = await client.GetVehiclesAsync(null, null);
+                        Assert.Fail("Exception thrown exception");
+                    }
+                    catch (Exception ex)
+                    {
+                        exception = ex;
+                    }
+                });
+
+            // Assert
+            Assert.IsNotNull(exception);
+            Assert.AreEqual(expectedModel.Errors.Select(e => e.Message).First(), exception.Message);
+        }
+
+        [TestMethod]
+        public void TestGetVehiclesAsyncInvalidApiTokenWithCancellationToken()
+        {
+            // Arrange
+            const string InvalidApiToken = "INVALID_API_TOKEN";
+            var client = new BusTrackerClient(UrlBase, InvalidApiToken);
+
+            var expectedModel = this.repository.GetAs<GetVehiclesResponse>(ResourceFiles.GetVehiclesResponseInvalidApiAccess);
+
+            Exception exception = null;
+
+            var cts = new CancellationTokenSource();
+
+            // Act
+            StartOwinTest(
+                async () =>
+                {
+                    try
+                    {
+                        var vehicles = await client.GetVehiclesAsync(null, null, cts.Token);
+                        Assert.Fail("Exception thrown exception");
+                    }
+                    catch (Exception ex)
+                    {
+                        exception = ex;
+                    }
+                });
+
+            // Assert
+            Assert.IsNotNull(exception);
+            Assert.AreEqual(expectedModel.Errors.Select(e => e.Message).First(), exception.Message);
+        }
+
+        [TestMethod]
+        public void TestGetVehiclesAsyncInvalidApiTokenWithCancelledCancellationToken()
+        {
+            // Arrange
+            const string InvalidApiToken = "INVALID_API_TOKEN";
+            var client = new BusTrackerClient(UrlBase, InvalidApiToken);
+
+            var expectedModel = this.repository.GetAs<GetVehiclesResponse>(ResourceFiles.GetVehiclesResponseInvalidApiAccess);
+
+            OperationCanceledException exception = null;
+
+            var cts = new CancellationTokenSource();
+            cts.Cancel();
+
+            // Act
+            StartOwinTest(
+                async () =>
+                {
+                    try
+                    {
+                        var time = await client.GetVehiclesAsync(null, null, cts.Token);
+                        Assert.Fail();
+                    }
+                    catch (OperationCanceledException ex)
+                    {
+                        exception = ex;
+                    }
+                });
+
+            // Assert
+            Assert.IsNotNull(exception);
+        }
+
+        [TestMethod]
+        public void TestGetVehiclesAsync()
+        {
+            // Arrange
+            var client = new BusTrackerClient(UrlBase, WebAppConfig.ApiKey);
+
+            var expectedModel = this.repository.GetAs<GetVehiclesResponse>(ResourceFiles.GetVehiclesResponse);
+
+            Vehicle[] vehicles = null;
+
+            // Act
+            StartOwinTest(
+                async () =>
+                {
+                    vehicles = (await client.GetVehiclesAsync(null, null)).ToArray();
+                });
+
+            // Assert
+            Assert.IsNotNull(vehicles);
+            Assert.AreEqual(vehicles.Length, expectedModel.Vehicles.Length);
+            Assert.AreEqual(vehicles[0].VehicleId, expectedModel.Vehicles[0].VehicleId);
+        }
+
+        [TestMethod]
+        public void TestGetVehiclesAsyncWithCancellationToken()
+        {
+            // Arrange
+            var client = new BusTrackerClient(UrlBase, WebAppConfig.ApiKey);
+
+            var expectedModel = this.repository.GetAs<GetVehiclesResponse>(ResourceFiles.GetVehiclesResponse);
+
+            var cts = new CancellationTokenSource();
+
+            Vehicle[] vehicles = null;
+
+            // Act
+            StartOwinTest(
+                async () =>
+                {
+                    vehicles = (await client.GetVehiclesAsync(null, null, cts.Token)).ToArray();
+                });
+
+            // Assert
+            Assert.IsNotNull(vehicles);
+            Assert.AreEqual(vehicles.Length, expectedModel.Vehicles.Length);
+            Assert.AreEqual(vehicles[0].VehicleId, expectedModel.Vehicles[0].VehicleId);
+        }
+
+        [TestMethod]
+        public void GetVehiclesAsyncWithCancelledCancellationToken()
+        {
+            // Arrange
+            var client = new BusTrackerClient(UrlBase, WebAppConfig.ApiKey);
+
+            var expectedModel = this.repository.GetAs<GetVehiclesResponse>(ResourceFiles.GetVehiclesResponse);
+
+            var cts = new CancellationTokenSource();
+            cts.Cancel();
+
+            OperationCanceledException exception = null;
+
+            // Act
+            StartOwinTest(
+                async () =>
+                {
+                    try
+                    {
+                        var vehicles = (await client.GetVehiclesAsync(null, null, cts.Token)).ToArray();
+                        Assert.Fail();
+                    }
+                    catch (OperationCanceledException ex)
+                    {
+                        exception = ex;
+                    }
+                });
+
+            // Assert
+            Assert.IsNotNull(exception);
+        }
+
+        #endregion
 
         #region "CreateGetVehiclesQueryString"
 

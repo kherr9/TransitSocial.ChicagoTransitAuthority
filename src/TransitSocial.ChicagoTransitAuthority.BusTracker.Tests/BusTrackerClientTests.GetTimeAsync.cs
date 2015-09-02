@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading;
-
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
 using TransitSocial.ChicagoTransitAuthority.BusTracker.Tests.Resources;
 
 namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
