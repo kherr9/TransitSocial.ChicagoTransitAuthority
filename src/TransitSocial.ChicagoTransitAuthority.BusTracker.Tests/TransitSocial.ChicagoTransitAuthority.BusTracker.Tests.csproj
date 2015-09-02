@@ -72,7 +72,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BusTrackerClientTests.GetRoutes.cs" />
-    <Compile Include="BusTrackerClientTests.GetTimeAsync.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\ResourceFiles.cs" />
     <Compile Include="Resources\ResourceRepository.cs" />
