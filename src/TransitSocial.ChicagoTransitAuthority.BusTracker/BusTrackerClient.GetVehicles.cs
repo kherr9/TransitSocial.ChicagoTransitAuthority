@@ -67,7 +67,7 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker
             }
         }
 
-        public static NameValueCollection CreateGetVehiclesQueryString(IEnumerable<string> vehicleIds, IEnumerable<string> routeIds)
+        internal static NameValueCollection CreateGetVehiclesQueryString(IEnumerable<string> vehicleIds, IEnumerable<string> routeIds)
         {
             var queryString = CreateQueryStringCollection();
 
