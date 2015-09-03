@@ -226,7 +226,7 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
         }
 
         [TestMethod]
-        public void GetRoutesAsyncWithCancelledCancellationToken()
+        public void TestGetRoutesAsyncWithCancelledCancellationToken()
         {
             // Arrange
             var client = new BusTrackerClient(UrlBase, WebAppConfig.ApiKey);
