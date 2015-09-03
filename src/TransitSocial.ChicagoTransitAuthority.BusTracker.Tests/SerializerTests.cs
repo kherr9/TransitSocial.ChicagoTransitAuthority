@@ -159,5 +159,45 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
         }
 
         #endregion
+
+        #region "GetRouteDirections"
+
+        [TestMethod]
+        public void TestDeserializeGetRouteDirections()
+        {
+            // Arrange
+            var xml = this.repository.GetString(ResourceFiles.GetRouteDirectionsResponse);
+
+            // Act
+            var response = this.serializer.Deserialize<GetRouteDirectionsResponse>(xml);
+
+            // Assert
+            Assert.IsNotNull(response);
+            Assert.IsNotNull(response.Directions);
+            Assert.AreEqual(2, response.Directions.Length);
+            Assert.AreEqual("Northbound", response.Directions[0]);
+            Assert.AreEqual("Southbound", response.Directions[1]);
+            Assert.IsNull(response.Errors);
+        }
+
+        [TestMethod]
+        public void TestDeserializeGetRouteDirectionsInvalidApiAccess()
+        {
+            // Arrange
+            var xml = this.repository.GetString(ResourceFiles.GetRouteDirectionsResponseInvalidApiAccess);
+
+            // Act
+            var response = this.serializer.Deserialize<GetRouteDirectionsResponse>(xml);
+
+            // Assert
+            Assert.IsNotNull(response);
+            Assert.IsNull(response.Directions);
+            Assert.IsNotNull(response.Errors);
+            Assert.AreEqual(1, response.Errors.Length);
+            var error = response.Errors[0];
+            Assert.AreEqual("Invalid API access key supplied", error.Message);
+        }
+
+        #endregion
     }
 }

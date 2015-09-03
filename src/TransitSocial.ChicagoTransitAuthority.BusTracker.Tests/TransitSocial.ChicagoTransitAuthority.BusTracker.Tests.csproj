@@ -71,6 +71,7 @@
     <Compile Include="BusTrackerClientTests.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BusTrackerClientTests.GetRouteDirections.cs" />
     <Compile Include="BusTrackerClientTests.GetRoutes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\ResourceFiles.cs" />
@@ -105,6 +106,10 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\GetRouteDirections\getroutedirections-response-invalidapiaccess.xml" />
+    <EmbeddedResource Include="Resources\GetRouteDirections\getroutedirections-response.xml" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

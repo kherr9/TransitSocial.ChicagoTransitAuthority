@@ -13,5 +13,9 @@
         // GetRoutes
         public const string GetRoutesResponse = "GetRoutes.getroutes-response.xml";
         public const string GetRoutesResponseInvalidApiAccess = "GetRoutes.getroutes-response-invalidapiaccess.xml";
+
+        // GetRouteDirections
+        public const string GetRouteDirectionsResponse = "GetRouteDirections.getroutedirections-response.xml";
+        public const string GetRouteDirectionsResponseInvalidApiAccess = "GetRouteDirections.getroutedirections-response-invalidapiaccess.xml";
     }
 }

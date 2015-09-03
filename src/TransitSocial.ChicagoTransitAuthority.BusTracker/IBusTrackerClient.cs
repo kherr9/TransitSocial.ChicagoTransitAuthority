@@ -87,5 +87,27 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker
         /// <param name="token"></param>
         /// <returns></returns>
         Task<IEnumerable<Route>> GetRoutesAsync(CancellationToken token);
+
+        /// <summary>
+        /// Use the getdirections request to retrieve the set of directions serviced by the specified route.
+        /// </summary>
+        /// <param name="routeId"></param>
+        /// <returns></returns>
+        IEnumerable<string> GetRouteDirections(string routeId);
+
+        /// <summary>
+        /// Use the getdirections request to retrieve the set of directions serviced by the specified route.
+        /// </summary>
+        /// <param name="routeId"></param>
+        /// <returns></returns>
+        Task<IEnumerable<string>> GetRouteDirectionsAsync(string routeId);
+
+        /// <summary>
+        /// Use the getdirections request to retrieve the set of directions serviced by the specified route.
+        /// </summary>
+        /// <param name="routeId"></param>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        Task<IEnumerable<string>> GetRouteDirectionsAsync(string routeId, CancellationToken token);
     }
 }

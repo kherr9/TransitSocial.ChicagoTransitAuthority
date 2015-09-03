@@ -40,6 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusTrackerClient.GetRouteDirections.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="BusTrackerClient.GetRoutes.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -47,6 +50,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BusTrackerClient.GetVehicles.cs" />
+    <Compile Include="GetRouteDirectionError.cs" />
+    <Compile Include="GetRouteDirectionsResponse.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="GetRoutesError.cs" />
     <Compile Include="GetRoutesResponse.cs" />
     <Compile Include="GetTimeResponse.cs" />
