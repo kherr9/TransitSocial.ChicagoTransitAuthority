@@ -109,5 +109,36 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker
         /// <param name="token"></param>
         /// <returns></returns>
         Task<IEnumerable<string>> GetRouteDirectionsAsync(string routeId, CancellationToken token);
+
+        /////// <summary>
+        /////// Use the getstops request to retrieve the set of stops for the specified route and direction.
+        /////// Stop lists are only available for a valid route/direction pair. In other words, a list of all stops that service
+        /////// a particular route (regardless of direction) cannot be requested.
+        /////// </summary>
+        /////// <param name="routeId"></param>
+        /////// <param name="direction"></param>
+        /////// <returns></returns>
+        ////IEnumerable<Stop> GetStops(string routeId, string direction);
+
+        /////// <summary>
+        /////// Use the getstops request to retrieve the set of stops for the specified route and direction.
+        /////// Stop lists are only available for a valid route/direction pair. In other words, a list of all stops that service
+        /////// a particular route (regardless of direction) cannot be requested.
+        /////// </summary>
+        /////// <param name="routeId"></param>
+        /////// <param name="direction"></param>
+        /////// <returns></returns>
+        ////Task<IEnumerable<Stop>> GetStopsAsync(string routeId, string direction);
+
+        /////// <summary>
+        /////// Use the getstops request to retrieve the set of stops for the specified route and direction.
+        /////// Stop lists are only available for a valid route/direction pair. In other words, a list of all stops that service
+        /////// a particular route (regardless of direction) cannot be requested.
+        /////// </summary>
+        /////// <param name="routeId"></param>
+        /////// <param name="direction"></param>
+        /////// <param name="token"></param>
+        /////// <returns></returns>
+        ////Task<IEnumerable<Stop>> GetStopsAsync(string routeId, string direction, CancellationToken token);
     }
 }

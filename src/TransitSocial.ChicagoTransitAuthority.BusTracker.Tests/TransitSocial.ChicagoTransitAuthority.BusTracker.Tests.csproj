@@ -111,6 +111,10 @@
     <EmbeddedResource Include="Resources\GetRouteDirections\getroutedirections-response-invalidapiaccess.xml" />
     <EmbeddedResource Include="Resources\GetRouteDirections\getroutedirections-response.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\GetStops\getstops-response-invalidapiaccess.xml" />
+    <EmbeddedResource Include="Resources\GetStops\getstops-response.xml" />
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
