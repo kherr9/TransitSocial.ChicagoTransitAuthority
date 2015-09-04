@@ -140,5 +140,69 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker
         /// <param name="token"></param>
         /// <returns></returns>
         Task<IEnumerable<Stop>> GetStopsAsync(string routeId, string direction, CancellationToken token);
+
+        /// <summary>
+        /// Use the getpredictions request to retrieve predictions for one or more stops or one or more vehicles.
+        /// Predictions are always returned in ascending order according to prdtm.
+        /// Use the vid parameter to retrieve predictions for one or more vehicles currently being tracked. A
+        /// maximum of 10 vehicles can be specified.
+        /// Use the stpid parameter to retrieve predictions for one or more stops. A maximum of 10 stops can be
+        /// specified.
+        /// Note: The vid and stpid parameters cannot be combined in one request. If both parameters are
+        /// specified on a request to getpredictions, only the first parameter specified on the request will be
+        /// processed.
+        /// All call to getpredictions without specifying the vid or stpid parameter is not allowed.
+        /// Use the top parameter to specify the maximum number of predictions to return. If top is not specified,
+        /// then all predictions matching the specified parameters will be returned.
+        /// </summary>
+        /// <param name="stopIds"></param>
+        /// <param name="routeIds"></param>
+        /// <param name="vehicleIds"></param>
+        /// <param name="top"></param>
+        /// <returns></returns>
+        IEnumerable<Prediction> GetPredictions(IEnumerable<string> stopIds, IEnumerable<string> routeIds, IEnumerable<string> vehicleIds, int? top);
+
+        /// <summary>
+        /// Use the getpredictions request to retrieve predictions for one or more stops or one or more vehicles.
+        /// Predictions are always returned in ascending order according to prdtm.
+        /// Use the vid parameter to retrieve predictions for one or more vehicles currently being tracked. A
+        /// maximum of 10 vehicles can be specified.
+        /// Use the stpid parameter to retrieve predictions for one or more stops. A maximum of 10 stops can be
+        /// specified.
+        /// Note: The vid and stpid parameters cannot be combined in one request. If both parameters are
+        /// specified on a request to getpredictions, only the first parameter specified on the request will be
+        /// processed.
+        /// All call to getpredictions without specifying the vid or stpid parameter is not allowed.
+        /// Use the top parameter to specify the maximum number of predictions to return. If top is not specified,
+        /// then all predictions matching the specified parameters will be returned.
+        /// </summary>
+        /// <param name="stopIds"></param>
+        /// <param name="routeIds"></param>
+        /// <param name="vehicleIds"></param>
+        /// <param name="top"></param>
+        /// <returns></returns>
+        Task<IEnumerable<Prediction>> GetPredictionsAsync(IEnumerable<string> stopIds, IEnumerable<string> routeIds, IEnumerable<string> vehicleIds, int? top);
+
+        /// <summary>
+        /// Use the getpredictions request to retrieve predictions for one or more stops or one or more vehicles.
+        /// Predictions are always returned in ascending order according to prdtm.
+        /// Use the vid parameter to retrieve predictions for one or more vehicles currently being tracked. A
+        /// maximum of 10 vehicles can be specified.
+        /// Use the stpid parameter to retrieve predictions for one or more stops. A maximum of 10 stops can be
+        /// specified.
+        /// Note: The vid and stpid parameters cannot be combined in one request. If both parameters are
+        /// specified on a request to getpredictions, only the first parameter specified on the request will be
+        /// processed.
+        /// All call to getpredictions without specifying the vid or stpid parameter is not allowed.
+        /// Use the top parameter to specify the maximum number of predictions to return. If top is not specified,
+        /// then all predictions matching the specified parameters will be returned.
+        /// </summary>
+        /// <param name="token"></param>
+        /// <param name="stopIds"></param>
+        /// <param name="routeIds"></param>
+        /// <param name="vehicleIds"></param>
+        /// <param name="top"></param>
+        /// <returns></returns>
+        Task<IEnumerable<Prediction>> GetPredictionsAsync(IEnumerable<string> stopIds, IEnumerable<string> routeIds, IEnumerable<string> vehicleIds, int? top, CancellationToken token);
     }
 }

@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusTrackerClient.GetPredictions.cs" />
     <Compile Include="BusTrackerClient.GetRouteDirections.cs">
       <SubType>Code</SubType>
     </Compile>

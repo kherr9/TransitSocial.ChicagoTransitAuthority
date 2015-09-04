@@ -71,6 +71,7 @@
     <Compile Include="BusTrackerClientTests.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BusTrackerClientTests.GetPredictions.cs" />
     <Compile Include="BusTrackerClientTests.GetRouteDirections.cs" />
     <Compile Include="BusTrackerClientTests.GetRoutes.cs" />
     <Compile Include="BusTrackerClientTests.GetStops.cs" />
