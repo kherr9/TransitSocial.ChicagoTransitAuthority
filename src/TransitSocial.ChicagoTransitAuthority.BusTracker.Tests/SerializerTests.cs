@@ -242,5 +242,55 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
         }
 
         #endregion
+
+        #region "GetPredictions"
+
+        [TestMethod]
+        public void TestDeserializeGetPredictions()
+        {
+            // Arrange
+            var xml = this.repository.GetString(ResourceFiles.GetPredictionsResponse);
+
+            // Act
+            var response = this.serializer.Deserialize<GetPredictionsResponse>(xml);
+
+            // Assert
+            Assert.IsNotNull(response);
+            Assert.IsNotNull(response.Predictions);
+            Assert.AreEqual(2, response.Predictions.Length);
+            var p1 = response.Predictions[0];
+            Assert.AreEqual(p1.Timestamp, "20150904 14:43");
+            Assert.AreEqual(p1.Type, "A");
+            Assert.AreEqual(p1.StopId, 456);
+            Assert.AreEqual(p1.StopName, "Madison & Jefferson");
+            Assert.AreEqual(p1.VehicleId, 1761);
+            Assert.AreEqual(p1.Distance, 8950);
+            Assert.AreEqual(p1.RouteId, "20");
+            Assert.AreEqual(p1.RouteDirection, "Westbound");
+            Assert.AreEqual(p1.Destination, "Austin");
+            Assert.AreEqual(p1.PredictionTime, "20150904 15:00");
+            Assert.AreEqual(p1.IsDelayed, false);
+            Assert.IsNull(response.Errors);
+        }
+
+        [TestMethod]
+        public void TestDeserializeGetPredictionsInvalidApiAccess()
+        {
+            // Arrange
+            var xml = this.repository.GetString(ResourceFiles.GetPredictionsResponseInvalidApiAccess);
+
+            // Act
+            var response = this.serializer.Deserialize<GetPredictionsResponse>(xml);
+
+            // Assert
+            Assert.IsNotNull(response);
+            Assert.IsNull(response.Predictions);
+            Assert.IsNotNull(response.Errors);
+            Assert.AreEqual(1, response.Errors.Length);
+            var error = response.Errors[0];
+            Assert.AreEqual("Invalid API access key supplied", error.Message);
+        }
+
+        #endregion
     }
 }

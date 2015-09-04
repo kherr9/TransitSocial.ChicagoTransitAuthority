@@ -21,5 +21,9 @@
         // GetStops
         public const string GetStopsResponse = "GetStops.getstops-response.xml";
         public const string GetStopsResponseInvalidApiAccess = "GetStops.getstops-response-invalidapiaccess.xml";
+
+        // GetPredictions
+        public const string GetPredictionsResponse = "GetPredictions.getpredictions-response.xml";
+        public const string GetPredictionsResponseInvalidApiAccess = "GetPredictions.getpredictions-response-invalidapiaccess.xml";
     }
 }

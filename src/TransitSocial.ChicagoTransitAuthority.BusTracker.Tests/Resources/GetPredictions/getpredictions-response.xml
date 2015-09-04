@@ -1,0 +1,54 @@
+﻿<?xml version="1.0"?>
+
+
+
+
+
+
+
+
+<bustime-response>
+
+  <prd>
+    <tmstmp>20150904 14:43</tmstmp>
+    <typ>A</typ>
+    <stpnm>Madison &amp; Jefferson</stpnm>
+    <stpid>456</stpid>
+    <vid>1761</vid>
+
+
+    <dstp>8950</dstp>
+    <rt>20</rt>
+    <rtdir>Westbound</rtdir>
+    <des>Austin</des>
+
+    <prdtm>20150904 15:00</prdtm>
+
+    <tablockid>20 -855</tablockid>
+    <tatripid>1040704</tatripid>
+    <zone></zone>
+  </prd>
+
+  <prd>
+    <tmstmp>20150904 14:43</tmstmp>
+    <typ>A</typ>
+    <stpnm>Madison &amp; Jefferson</stpnm>
+    <stpid>456</stpid>
+    <vid>1084</vid>
+
+
+    <dstp>17430</dstp>
+    <rt>20</rt>
+    <rtdir>Westbound</rtdir>
+    <des>Austin</des>
+
+    <prdtm>20150904 15:14</prdtm>
+
+    <tablockid>20 -815</tablockid>
+    <tatripid>1040706</tatripid>
+    <zone></zone>
+  </prd>
+
+</bustime-response>
+
+
