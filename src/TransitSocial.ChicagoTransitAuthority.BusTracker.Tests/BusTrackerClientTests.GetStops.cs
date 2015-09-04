@@ -13,16 +13,16 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
 {
     public partial class BusTrackerClientTests
     {
-        #region "GetRouteDirections"
+        #region "GetStops"
 
         [TestMethod]
-        public void TestGetRouteDirectionsInvalidApiToken()
+        public void TestGetStopsInvalidApiToken()
         {
             // Arrange
             const string InvalidApiToken = "INVALID_API_TOKEN";
             var client = new BusTrackerClient(UrlBase, InvalidApiToken);
 
-            var expectedModel = this.repository.GetAs<GetRouteDirectionsResponse>(ResourceFiles.GetRouteDirectionsResponseInvalidApiAccess);
+            var expectedModel = this.repository.GetAs<GetStopsResponse>(ResourceFiles.GetStopsResponseInvalidApiAccess);
 
             Exception exception = null;
 
@@ -32,7 +32,7 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
                 {
                     try
                     {
-                        var directions = client.GetRouteDirections(Guid.NewGuid().ToString());
+                        var stops = client.GetStops(Guid.NewGuid().ToString(), Guid.NewGuid().ToString());
                         Assert.Fail("Exception thrown exception");
                     }
                     catch (Exception ex)
@@ -49,43 +49,43 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
         }
 
         [TestMethod]
-        public void TestGetRouteDirections()
+        public void TestGetStops()
         {
             // Arrange
             var client = new BusTrackerClient(UrlBase, WebAppConfig.ApiKey);
 
-            var expectedModel = this.repository.GetAs<GetRouteDirectionsResponse>(ResourceFiles.GetRouteDirectionsResponse);
+            var expectedModel = this.repository.GetAs<GetStopsResponse>(ResourceFiles.GetStopsResponse);
 
-            IEnumerable<string> directions = null;
+            IEnumerable<Stop> stops = null;
 
             // Act
             StartOwinTest(
                 () =>
                 {
-                    directions = client.GetRouteDirections(Guid.NewGuid().ToString());
+                    stops = client.GetStops(Guid.NewGuid().ToString(), Guid.NewGuid().ToString());
 
                     return Task.FromResult(true);
                 });
 
             // Assert
-            var expectedDirections = expectedModel.Directions.ToList();
-            var actualDirections = directions.ToList();
+            var expectedStopIds = expectedModel.Stops.Select(x => x.StopId).ToList();
+            var actualStopIds = stops.Select(x => x.StopId).ToList();
 
-            CollectionAssert.AreEqual(expectedDirections, actualDirections);
+            CollectionAssert.AreEqual(expectedStopIds, actualStopIds);
         }
 
         #endregion
 
-        #region "GetRouteDirectionsAsync"
+        #region "GetStopsAsync"
 
         [TestMethod]
-        public void TestGetRouteDirectionsAsyncInvalidApiToken()
+        public void TestGetStopsAsyncInvalidApiToken()
         {
             // Arrange
             const string InvalidApiToken = "INVALID_API_TOKEN";
             var client = new BusTrackerClient(UrlBase, InvalidApiToken);
 
-            var expectedModel = this.repository.GetAs<GetRouteDirectionsResponse>(ResourceFiles.GetRouteDirectionsResponseInvalidApiAccess);
+            var expectedModel = this.repository.GetAs<GetStopsResponse>(ResourceFiles.GetStopsResponseInvalidApiAccess);
 
             Exception exception = null;
 
@@ -95,7 +95,7 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
                 {
                     try
                     {
-                        var directions = await client.GetRouteDirectionsAsync(Guid.NewGuid().ToString());
+                        var stops = await client.GetStopsAsync(Guid.NewGuid().ToString(), Guid.NewGuid().ToString());
                         Assert.Fail("Exception thrown exception");
                     }
                     catch (Exception ex)
@@ -110,13 +110,13 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
         }
 
         [TestMethod]
-        public void TestGetRouteDirectionsAsyncInvalidApiTokenWithCancellationToken()
+        public void TestGetStopsAsyncInvalidApiTokenWithCancellationToken()
         {
             // Arrange
             const string InvalidApiToken = "INVALID_API_TOKEN";
             var client = new BusTrackerClient(UrlBase, InvalidApiToken);
 
-            var expectedModel = this.repository.GetAs<GetRouteDirectionsResponse>(ResourceFiles.GetRouteDirectionsResponseInvalidApiAccess);
+            var expectedModel = this.repository.GetAs<GetStopsResponse>(ResourceFiles.GetStopsResponseInvalidApiAccess);
 
             Exception exception = null;
 
@@ -128,7 +128,7 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
                 {
                     try
                     {
-                        var directions = await client.GetRouteDirectionsAsync(Guid.NewGuid().ToString(), cts.Token);
+                        var stops = await client.GetStopsAsync(Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), cts.Token);
                         Assert.Fail("Exception thrown exception");
                     }
                     catch (Exception ex)
@@ -143,15 +143,15 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
         }
 
         [TestMethod]
-        public void TestGetRouteDirectionsAsyncInvalidApiTokenWithCancelledCancellationToken()
+        public void TestGetStopsAsyncInvalidApiTokenWithCancelledCancellationToken()
         {
             // Arrange
             const string InvalidApiToken = "INVALID_API_TOKEN";
             var client = new BusTrackerClient(UrlBase, InvalidApiToken);
 
-            var expectedModel = this.repository.GetAs<GetRouteDirectionsResponse>(ResourceFiles.GetRouteDirectionsResponseInvalidApiAccess);
+            var expectedModel = this.repository.GetAs<GetStopsResponse>(ResourceFiles.GetStopsResponseInvalidApiAccess);
 
-            Exception exception = null;
+            OperationCanceledException exception = null;
 
             var cts = new CancellationTokenSource();
             cts.Cancel();
@@ -162,7 +162,7 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
                 {
                     try
                     {
-                        var directions = await client.GetRouteDirectionsAsync(Guid.NewGuid().ToString(), cts.Token);
+                        var stops = await client.GetStopsAsync(Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), cts.Token);
                         Assert.Fail("Exception thrown exception");
                     }
                     catch (OperationCanceledException ex)
@@ -176,62 +176,62 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
         }
 
         [TestMethod]
-        public void TestGetRouteDirectionsAsync()
+        public void TestGetStopsAsync()
         {
             // Arrange
             var client = new BusTrackerClient(UrlBase, WebAppConfig.ApiKey);
 
-            var expectedModel = this.repository.GetAs<GetRouteDirectionsResponse>(ResourceFiles.GetRouteDirectionsResponse);
+            var expectedModel = this.repository.GetAs<GetStopsResponse>(ResourceFiles.GetStopsResponse);
 
-            IEnumerable<string> directions = null;
+            IEnumerable<Stop> stops = null;
 
             // Act
             StartOwinTest(
                 async () =>
                 {
-                    directions = await client.GetRouteDirectionsAsync(Guid.NewGuid().ToString());
+                    stops = await client.GetStopsAsync(Guid.NewGuid().ToString(), Guid.NewGuid().ToString());
                 });
 
             // Assert
-            var expectedDirections = expectedModel.Directions.ToList();
-            var actualDirections = directions.ToList();
+            var expectedStopIds = expectedModel.Stops.Select(x => x.StopId).ToList();
+            var actualStopIds = stops.Select(x => x.StopId).ToList();
 
-            CollectionAssert.AreEqual(expectedDirections, actualDirections);
+            CollectionAssert.AreEqual(expectedStopIds, actualStopIds);
         }
 
         [TestMethod]
-        public void TestGetRouteDirectionsAsyncWithCancellationToken()
+        public void TestGetStopsAsyncWithCancellationToken()
         {
             // Arrange
             var client = new BusTrackerClient(UrlBase, WebAppConfig.ApiKey);
 
-            var expectedModel = this.repository.GetAs<GetRouteDirectionsResponse>(ResourceFiles.GetRouteDirectionsResponse);
+            var expectedModel = this.repository.GetAs<GetStopsResponse>(ResourceFiles.GetStopsResponse);
 
             var cts = new CancellationTokenSource();
 
-            IEnumerable<string> directions = null;
+            IEnumerable<Stop> stops = null;
 
             // Act
             StartOwinTest(
                 async () =>
                 {
-                    directions = await client.GetRouteDirectionsAsync(Guid.NewGuid().ToString(), cts.Token);
+                    stops = await client.GetStopsAsync(Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), cts.Token);
                 });
 
             // Assert
-            var expectedDirections = expectedModel.Directions.ToList();
-            var actualDirections = directions.ToList();
+            var expectedStopIds = expectedModel.Stops.Select(x => x.StopId).ToList();
+            var actualStopIds = stops.Select(x => x.StopId).ToList();
 
-            CollectionAssert.AreEqual(expectedDirections, actualDirections);
+            CollectionAssert.AreEqual(expectedStopIds, actualStopIds);
         }
 
         [TestMethod]
-        public void TestGetRouteDirectionsAsyncWithCanceledCancellationToken()
+        public void TestGetStopsAsyncWithCancelledCancellationToken()
         {
             // Arrange
             var client = new BusTrackerClient(UrlBase, WebAppConfig.ApiKey);
 
-            var expectedModel = this.repository.GetAs<GetRouteDirectionsResponse>(ResourceFiles.GetRouteDirectionsResponse);
+            var expectedModel = this.repository.GetAs<GetStopsResponse>(ResourceFiles.GetStopsResponse);
 
             var cts = new CancellationTokenSource();
             cts.Cancel();
@@ -244,7 +244,7 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
                 {
                     try
                     {
-                        var directions = await client.GetRouteDirectionsAsync(Guid.NewGuid().ToString(), cts.Token);
+                        var stops = await client.GetStopsAsync(Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), cts.Token);
                     }
                     catch (OperationCanceledException ex)
                     {
@@ -258,23 +258,23 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
 
         #endregion
 
-        #region "CreateGetRouteDirectionsQueryString"
+        #region "CreateGetStopsQueryString"
 
         [TestMethod]
-        public void TestCreateGetRouteDirectionsQueryString()
+        public void TestCreateGetStopsQueryString()
         {
             // Arrange
             var routeId = "88 N";
+            var direction = "North Bound";
 
             // Act
-            var collection = BusTrackerClient.CreateGetRouteDirectionsQueryString(routeId);
+            var collection = BusTrackerClient.CreateGetStopsQueryString(routeId, direction);
 
             // Assert
             Assert.IsNotNull(collection);
-            Assert.AreEqual("rt=88+N", collection.ToString());
+            Assert.AreEqual("rt=88+N&dir=North+Bound", collection.ToString());
         }
 
         #endregion
-
     }
 }
