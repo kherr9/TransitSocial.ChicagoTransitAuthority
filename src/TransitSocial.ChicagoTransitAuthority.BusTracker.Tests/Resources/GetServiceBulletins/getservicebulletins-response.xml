@@ -1,0 +1,412 @@
+﻿<?xml version="1.0"?>
+
+
+
+
+
+<bustime-response>
+
+  <sb>
+    <nm>#18 - Cosntruction</nm>
+    <sbj>#18 16th/18th Reroute</sbj>
+    <dtl>Buses will operate in both directions via 16th, Western, 15th, Rockwell, and 16th.&lt;br/&gt;&lt;br/&gt;Allow extra travel time.&lt;br/&gt;&lt;br/&gt;Buses are rerouted due to street repair work on 16th Street between 2400 West and 2457 West.&lt;br/&gt;</dtl>
+    <brf></brf>
+    <prty>Low</prty>
+
+  </sb>
+
+  <sb>
+    <nm>#3-4-6-10-J14-146-147-151 - marathon</nm>
+    <sbj>#3-4-6-10-J14-146-147-151reorute</sbj>
+    <dtl>#3: NB via Michigan, Madison, State, Chicago to Michigan, nrml rt, SB  via Chicago, State, Washington, nrml rt.&lt;br/&gt;#4: NB via Michigan, Madison, ending at Madison/Wabash. SB begin at Madison/Wabash, operate via Madison, State,  Monroe, nrml rt.&lt;br/&gt;#6: NB  via Columbus, Roosevelt, Michigan,  Madison, ending  at Madison/Wabash. SB  begin at Madison/Wabash, operate via Madison,  nrml rt.&lt;br/&gt;#10: NB via State, Chicago to Michigan, nrml rt. SB via Michigan, Chicago, State to Wacker, nrml rt.&lt;br/&gt;#J14: NB via Columbus, Roosevelt, Michigan to Balbo, nrml rt. SB via Michigan, Roosevelt, nrml rt. &lt;br/&gt;#146: SB  via Michigan, Chicago, State to Wacker, nrml rt. NB via State, Chicago, nrml rt.&lt;br/&gt;#147: SB via Michigan, Chicago, State,  Washington, nrml rt. NB via State, Chicago, nrml rt.&lt;br/&gt;#151: SB via Michigan, Chicago, State,  Washington, nrml rt. NB via Dearborn, Washington, State, Chicago, nrml rt.&lt;br/&gt;&lt;br/&gt;Buses are rerouted due to the Magnificent Mile Chicago Women's Half-Marathon &lt;br/&gt;and 5K.&lt;br/&gt;</dtl>
+    <brf></brf>
+    <prty>Low</prty>
+
+    <srvc>
+      <rt>3</rt>
+
+
+
+    </srvc>
+
+    <srvc>
+      <rt>4</rt>
+
+
+
+    </srvc>
+
+    <srvc>
+      <rt>6</rt>
+
+
+
+    </srvc>
+
+    <srvc>
+      <rt>10</rt>
+
+
+
+    </srvc>
+
+    <srvc>
+      <rt>J14</rt>
+
+
+
+    </srvc>
+
+    <srvc>
+      <rt>146</rt>
+
+
+
+    </srvc>
+
+    <srvc>
+      <rt>147</rt>
+
+
+
+    </srvc>
+
+    <srvc>
+      <rt>151</rt>
+
+
+
+    </srvc>
+
+  </sb>
+
+  <sb>
+    <nm>N4 (Multiple Routes) Bus Stop Relocation</nm>
+    <sbj>Temporary Bus Stop Relocation</sbj>
+    <dtl>The eastbound #N4 Cottage Grove, #19 United Center Express, #20 Madison, #56 Milwaukee&lt;br/&gt;#60 Blue Island/26th,#N66 Chicago (Owl), #147 Outer Drive Express, #151 Sheridan, &lt;br/&gt;#157 Streeterville/Taylor bus stop on the southeast corner at Washington/State will be temporarily relocated to the southwest corner at Washington/Wabash.&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;The bus stop will be temporarily relocated due to construction.&lt;br/&gt;&lt;br/&gt;</dtl>
+    <brf></brf>
+    <prty>Low</prty>
+
+    <srvc>
+      <rt>4</rt>
+
+
+
+    </srvc>
+
+    <srvc>
+      <rt>19</rt>
+
+
+
+    </srvc>
+
+    <srvc>
+      <rt>20</rt>
+
+
+
+    </srvc>
+
+    <srvc>
+      <rt>56</rt>
+
+
+
+    </srvc>
+
+    <srvc>
+      <rt>60</rt>
+
+
+
+    </srvc>
+
+    <srvc>
+      <rt>66</rt>
+
+
+
+    </srvc>
+
+    <srvc>
+      <rt>147</rt>
+
+
+
+    </srvc>
+
+    <srvc>
+      <rt>151</rt>
+
+
+
+    </srvc>
+
+    <srvc>
+      <rt>157</rt>
+
+
+
+    </srvc>
+
+  </sb>
+
+  <sb>
+    <nm>#N4 Temporary Bus Stop Elimination </nm>
+    <sbj>Temporary Bus Stop Elimination</sbj>
+    <dtl>The eastbound #N4 Cottage Grove (owl), #19 United Center Express, #20  Madison&lt;br/&gt;#56 Milwaukee, #60 Blue Island/26th, #N66 Chicago (owl), #147 Outer Drive Express&lt;br/&gt;#151 Sheridan, #157 Streeterville/Taylorbus stop on the southeast corner at Washington/Wabash will be temporarily eliminated.&lt;br/&gt;&lt;br/&gt;The bus stop will be temporarily eliminated due to construction.&lt;br/&gt;</dtl>
+    <brf></brf>
+    <prty>Low</prty>
+
+    <srvc>
+      <rt>4</rt>
+
+
+
+    </srvc>
+
+    <srvc>
+      <rt>19</rt>
+
+
+
+    </srvc>
+
+    <srvc>
+      <rt>20</rt>
+
+
+
+    </srvc>
+
+    <srvc>
+      <rt>56</rt>
+
+
+
+    </srvc>
+
+    <srvc>
+      <rt>60</rt>
+
+
+
+    </srvc>
+
+    <srvc>
+      <rt>66</rt>
+
+
+
+    </srvc>
+
+    <srvc>
+      <rt>148</rt>
+
+
+
+    </srvc>
+
+    <srvc>
+      <rt>151</rt>
+
+
+
+    </srvc>
+
+    <srvc>
+      <rt>157</rt>
+
+
+
+    </srvc>
+
+  </sb>
+
+  <sb>
+    <nm>#6, #10, #J14 - Marathon</nm>
+    <sbj>#6, #10, #J14 Reroutes</sbj>
+    <dtl>Northbound #6 Jackson Park Express, #10 Museum of Science and Industry, and &lt;br/&gt;#J14 Jeffery Jump buses will operate via Columbus and Roosevelt to Michigan.&lt;br/&gt;&lt;br/&gt;#6 and #J14 buses will continue their normal route on Michigan.&lt;br/&gt;&lt;br/&gt;#10 buses will resume their normal route on Balbo.&lt;br/&gt;&lt;br/&gt;Southbound #6 and #10 buses will operate via Balbo, Michigan, and Roosevelt, then resume their normal route on Columbus.&lt;br/&gt;&lt;br/&gt;Southbound #J14 buses will operate via Michigan and Roosevelt, then resume their normal route on Columbus.&lt;br/&gt;&lt;br/&gt;Allow extra time.&lt;br/&gt;&lt;br/&gt;Buses are rerouted due to the Magnificent Mile Chicago Women's Half-Marathon and 5K.&lt;br/&gt;</dtl>
+    <brf></brf>
+    <prty>Low</prty>
+
+    <srvc>
+      <rt>6</rt>
+
+
+
+    </srvc>
+
+    <srvc>
+      <rt>10</rt>
+
+
+
+    </srvc>
+
+    <srvc>
+      <rt>J14</rt>
+
+
+
+    </srvc>
+
+  </sb>
+
+  <sb>
+    <nm>#J14, #15 - New Bus Stops Added</nm>
+    <sbj>New Bus Stops Added</sbj>
+    <dtl>How does this affect my trip?&lt;br/&gt;New #J14 Jeffery Jump  and #15 Jeffery Local bus stops have been added on the northeast and southwest corners at Jeffery/81st.&lt;br/&gt;&lt;br/&gt;Why is service being changed?&lt;br/&gt;The bus stops have been added for customer convenience.&lt;br/&gt;</dtl>
+    <brf></brf>
+    <prty>Low</prty>
+
+    <srvc>
+      <rt>J14</rt>
+
+
+
+    </srvc>
+
+    <srvc>
+      <rt>15</rt>
+
+
+
+    </srvc>
+
+  </sb>
+
+  <sb>
+    <nm>#J14, #15 New Bus Stops Added</nm>
+    <sbj>New Bus Stops Added</sbj>
+    <dtl>New #J14 and #15 bus stops have been added on the northeast and southwest corners at Jeffery/81st.&lt;br/&gt;&lt;br/&gt;The bus stops have been added for customer convenience.&lt;br/&gt;</dtl>
+    <brf></brf>
+    <prty>Low</prty>
+
+    <srvc>
+      <rt>J14</rt>
+
+
+
+    </srvc>
+
+    <srvc>
+      <rt>15</rt>
+
+
+
+    </srvc>
+
+  </sb>
+
+  <sb>
+    <nm>#J14. 19, 20, 56, 60, 124, 157 Bus Stop Relocation</nm>
+    <sbj>Temporary Bus Stop Relocation</sbj>
+    <dtl>Effective Thursday, April 2 until further notice&lt;br/&gt;&lt;br/&gt;The temporary westbound #J14 Jeffery Jump. #19 United Center Express, #20 Madison&lt;br/&gt;#56 Milwaukee, #60 Blue Island/26th, #124 Navy Pier, and #157 Streeterville/Taylor&lt;br/&gt;bus stop located on the northeast corner at Madison/Franklin will be relocated 1-1/2 blocks east, mid-block between LaSalle and Wells.&lt;br/&gt;&lt;br/&gt;The bus stop will be temporarily relocated due to construction.&lt;br/&gt;&lt;br/&gt;</dtl>
+    <brf></brf>
+    <prty>Low</prty>
+
+    <srvc>
+      <rt>J14</rt>
+
+
+
+    </srvc>
+
+    <srvc>
+      <rt>19</rt>
+
+
+
+    </srvc>
+
+    <srvc>
+      <rt>20</rt>
+
+
+
+    </srvc>
+
+    <srvc>
+      <rt>56</rt>
+
+
+
+    </srvc>
+
+    <srvc>
+      <rt>124</rt>
+
+
+
+    </srvc>
+
+    <srvc>
+      <rt>157</rt>
+
+
+
+    </srvc>
+
+  </sb>
+
+  <sb>
+    <nm>#J14, 19, 20, 56, 60, 124, 157  Stop Relocation</nm>
+    <sbj>#J14, 19, 20, 56, 60, 124, 157 </sbj>
+    <dtl>The westbound  #19 United Center Express, #20 Madison, #60 Blue Island/26th, #124 Navy Pier, and #157 Streeterville/Taylor, and northbound J14 Jeffery Jump and #56 Milwaukee stop at the northwest corner of Madison/State will be temporarily relocated to the northeast corner of Madison/Wabash.&lt;br/&gt;&lt;br/&gt;This bus stop is being temporarily relocated due to construction.&lt;br/&gt;</dtl>
+    <brf></brf>
+    <prty>Low</prty>
+
+    <srvc>
+      <rt>J14</rt>
+      <rtdir>Northbound</rtdir>
+
+
+    </srvc>
+
+    <srvc>
+      <rt>19</rt>
+      <rtdir>Westbound</rtdir>
+
+
+    </srvc>
+
+    <srvc>
+      <rt>20</rt>
+      <rtdir>Westbound</rtdir>
+
+
+    </srvc>
+
+    <srvc>
+      <rt>56</rt>
+      <rtdir>Northbound</rtdir>
+
+
+    </srvc>
+
+    <srvc>
+      <rt>60</rt>
+      <rtdir>Westbound</rtdir>
+
+
+    </srvc>
+
+    <srvc>
+      <rt>124</rt>
+      <rtdir>Westbound</rtdir>
+
+
+    </srvc>
+
+    <srvc>
+      <rt>157</rt>
+      <rtdir>Westbound</rtdir>
+
+
+    </srvc>
+
+  </sb>
+
+</bustime-response>

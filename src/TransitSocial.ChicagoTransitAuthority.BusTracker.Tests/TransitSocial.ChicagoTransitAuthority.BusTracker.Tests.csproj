@@ -121,6 +121,12 @@
     <EmbeddedResource Include="Resources\GetPredictions\getpredictions-response.xml" />
     <EmbeddedResource Include="Resources\GetPredictions\getpredictions-response-invalidapiaccess.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\GetServiceBulletins\getservicebulletins-response-invalidapiaccess.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\GetServiceBulletins\getservicebulletins-response.xml" />
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

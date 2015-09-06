@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AffectedService.cs" />
     <Compile Include="BusTrackerClient.GetPredictions.cs" />
     <Compile Include="BusTrackerClient.GetRouteDirections.cs">
       <SubType>Code</SubType>
@@ -78,6 +79,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Route.cs" />
     <Compile Include="Serializer.cs" />
+    <Compile Include="ServiceBulletin.cs" />
+    <Compile Include="GetServiceBulletinResponse.cs" />
+    <Compile Include="GetServiceBulletinResponseError.cs" />
     <Compile Include="Stop.cs" />
     <Compile Include="Vehicle.cs" />
   </ItemGroup>

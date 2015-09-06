@@ -25,5 +25,9 @@
         // GetPredictions
         public const string GetPredictionsResponse = "GetPredictions.getpredictions-response.xml";
         public const string GetPredictionsResponseInvalidApiAccess = "GetPredictions.getpredictions-response-invalidapiaccess.xml";
+
+        // GetServiceBulletins
+        public const string GetServiceBulletinsResponse = "GetServiceBulletins.getservicebulletins-response.xml";
+        public const string GetServiceBulletinsResponseInvalidApiAccess = "GetServiceBulletins.getservicebulletins-response-invalidapiaccess.xml";
     }
 }

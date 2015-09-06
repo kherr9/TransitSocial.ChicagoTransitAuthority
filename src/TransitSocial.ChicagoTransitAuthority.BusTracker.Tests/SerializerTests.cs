@@ -292,5 +292,38 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
         }
 
         #endregion
+
+        #region "GetServiceBulletins"
+
+        [TestMethod]
+        public void TestDeserializeGetServiceBulletins()
+        {
+            // Arrange
+            var xml = this.repository.GetString(ResourceFiles.GetServiceBulletinsResponse);
+
+            // Act
+            var response = this.serializer.Deserialize<GetServiceBulletinResponse>(xml);
+
+            // Assert
+            Assert.IsNotNull(response);
+            Assert.IsNotNull(response.ServiceBulletins);
+            Assert.AreEqual(9, response.ServiceBulletins.Length);
+            var sb1 = response.ServiceBulletins[0];
+            Assert.AreEqual(sb1.Name, "#18 - Cosntruction");
+            Assert.AreEqual(sb1.Subject, "#18 16th/18th Reroute");
+            Assert.AreEqual(sb1.Detail, "Buses will operate in both directions via 16th, Western, 15th, Rockwell, and 16th.<br/><br/>Allow extra travel time.<br/><br/>Buses are rerouted due to street repair work on 16th Street between 2400 West and 2457 West.<br/>");
+            Assert.AreEqual(sb1.Brief, "");
+            Assert.AreEqual(sb1.Priority, "Low");
+            Assert.AreEqual(sb1.AffectedServices, null);
+            var sb9 = response.ServiceBulletins[8];
+            Assert.IsNotNull(sb9.AffectedServices);
+            Assert.AreEqual(7, sb9.AffectedServices.Length);
+            var sb9_as1 = sb9.AffectedServices[0];
+            Assert.AreEqual("J14", sb9_as1.RouteId);
+            Assert.AreEqual("Northbound", sb9_as1.RouteDirection);
+            Assert.IsNull(response.Errors);
+        }
+
+        #endregion
     }
 }
