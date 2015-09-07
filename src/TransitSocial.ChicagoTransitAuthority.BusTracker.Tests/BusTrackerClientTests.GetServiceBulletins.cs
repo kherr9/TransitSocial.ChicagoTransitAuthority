@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+using TransitSocial.ChicagoTransitAuthority.BusTracker.Tests.Resources;
+
 namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
 {
     public partial class BusTrackerClientTests
@@ -13,13 +15,62 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
         #region "GetServiceBulletins"
 
         [TestMethod]
-        public void TestFooWhenCondition()
+        public void TestGetServiceBulletinsInvalidApiToken()
         {
             // Arrange
+            const string InvalidApiToken = "INVALID_API_TOKEN";
+            var client = new BusTrackerClient(UrlBase, InvalidApiToken);
+
+            var expectedModel = this.repository.GetAs<GetServiceBulletinResponse>(ResourceFiles.GetServiceBulletinsResponseInvalidApiAccess);
+
+            Exception exception = null;
 
             // Act
+            StartOwinTest(
+                () =>
+                {
+                    try
+                    {
+                        var serviceBulletins = client.GetServiceBulletins(Enumerable.Empty<string>(), null, Enumerable.Empty<string>());
+                        Assert.Fail("Exception thrown exception");
+                    }
+                    catch (Exception ex)
+                    {
+                        exception = ex;
+                    }
+
+                    return Task.FromResult(true);
+                });
 
             // Assert
+            Assert.IsNotNull(exception);
+            Assert.AreEqual(expectedModel.Errors.Select(e => e.Message).First(), exception.Message);
+        }
+
+        [TestMethod]
+        public void TestGetServiceBulletins()
+        {
+            // Arrange
+            var client = new BusTrackerClient(UrlBase, WebAppConfig.ApiKey);
+
+            var expectedModel = this.repository.GetAs<GetServiceBulletinResponse>(ResourceFiles.GetServiceBulletinsResponse);
+
+            IEnumerable<ServiceBulletin> serviceBulletins = null;
+
+            // Act
+            StartOwinTest(
+                () =>
+                {
+                    serviceBulletins = client.GetServiceBulletins(Enumerable.Empty<string>(), null, Enumerable.Empty<string>());
+
+                    return Task.FromResult(true);
+                });
+
+            // Assert
+            var expectedServiceBulletinNames = expectedModel.ServiceBulletins.Select(x => x.Name).ToList();
+            var actualServiceBulletinNames = serviceBulletins.Select(x => x.Name).ToList();
+
+            CollectionAssert.AreEqual(expectedServiceBulletinNames, actualServiceBulletinNames);
         }
 
         #endregion
