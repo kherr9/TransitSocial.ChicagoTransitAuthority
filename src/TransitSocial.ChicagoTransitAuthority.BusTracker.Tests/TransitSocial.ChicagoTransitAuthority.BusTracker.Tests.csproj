@@ -74,6 +74,7 @@
     <Compile Include="BusTrackerClientTests.GetPredictions.cs" />
     <Compile Include="BusTrackerClientTests.GetRouteDirections.cs" />
     <Compile Include="BusTrackerClientTests.GetRoutes.cs" />
+    <Compile Include="BusTrackerClientTests.GetServiceBulletins.cs" />
     <Compile Include="BusTrackerClientTests.GetStops.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\ResourceFiles.cs" />
