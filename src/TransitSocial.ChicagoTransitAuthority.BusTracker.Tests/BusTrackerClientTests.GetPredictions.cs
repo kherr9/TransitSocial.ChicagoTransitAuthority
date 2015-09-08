@@ -32,7 +32,7 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
                 {
                     try
                     {
-                        var predictions = client.GetPredictions(Enumerable.Empty<string>(), Enumerable.Empty<string>(), Enumerable.Empty<string>(), null);
+                        var predictions = client.GetPredictions(Enumerable.Empty<int>(), Enumerable.Empty<string>(), Enumerable.Empty<string>(), null);
                         Assert.Fail("Exception thrown exception");
                     }
                     catch (Exception ex)
@@ -62,7 +62,7 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
             StartOwinTest(
                 () =>
                 {
-                    predictions = client.GetPredictions(Enumerable.Empty<string>(), Enumerable.Empty<string>(), Enumerable.Empty<string>(), null);
+                    predictions = client.GetPredictions(Enumerable.Empty<int>(), Enumerable.Empty<string>(), Enumerable.Empty<string>(), null);
 
                     return Task.FromResult(true);
                 });
@@ -95,7 +95,7 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
                 {
                     try
                     {
-                        var predictions = await client.GetPredictionsAsync(Enumerable.Empty<string>(), Enumerable.Empty<string>(), Enumerable.Empty<string>(), null);
+                        var predictions = await client.GetPredictionsAsync(Enumerable.Empty<int>(), Enumerable.Empty<string>(), Enumerable.Empty<string>(), null);
                         Assert.Fail("Exception thrown exception");
                     }
                     catch (Exception ex)
@@ -128,7 +128,7 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
                 {
                     try
                     {
-                        var predictions = await client.GetPredictionsAsync(Enumerable.Empty<string>(), Enumerable.Empty<string>(), Enumerable.Empty<string>(), null, cts.Token);
+                        var predictions = await client.GetPredictionsAsync(Enumerable.Empty<int>(), Enumerable.Empty<string>(), Enumerable.Empty<string>(), null, cts.Token);
                         Assert.Fail("Exception thrown exception");
                     }
                     catch (Exception ex)
@@ -162,7 +162,7 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
                 {
                     try
                     {
-                        var predictions = await client.GetPredictionsAsync(Enumerable.Empty<string>(), Enumerable.Empty<string>(), Enumerable.Empty<string>(), null, cts.Token);
+                        var predictions = await client.GetPredictionsAsync(Enumerable.Empty<int>(), Enumerable.Empty<string>(), Enumerable.Empty<string>(), null, cts.Token);
                         Assert.Fail("Exception thrown exception");
                     }
                     catch (OperationCanceledException ex)
@@ -189,7 +189,7 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
             StartOwinTest(
                 async () =>
                 {
-                    predictions = await client.GetPredictionsAsync(Enumerable.Empty<string>(), Enumerable.Empty<string>(), Enumerable.Empty<string>(), null);
+                    predictions = await client.GetPredictionsAsync(Enumerable.Empty<int>(), Enumerable.Empty<string>(), Enumerable.Empty<string>(), null);
                 });
 
             // Assert
@@ -215,7 +215,7 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
             StartOwinTest(
                 async () =>
                 {
-                    predictions = await client.GetPredictionsAsync(Enumerable.Empty<string>(), Enumerable.Empty<string>(), Enumerable.Empty<string>(), null, cts.Token);
+                    predictions = await client.GetPredictionsAsync(Enumerable.Empty<int>(), Enumerable.Empty<string>(), Enumerable.Empty<string>(), null, cts.Token);
                 });
 
             // Assert
@@ -244,7 +244,7 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
                 {
                     try
                     {
-                        var predictions = await client.GetPredictionsAsync(Enumerable.Empty<string>(), Enumerable.Empty<string>(), Enumerable.Empty<string>(), null, cts.Token);
+                        var predictions = await client.GetPredictionsAsync(Enumerable.Empty<int>(), Enumerable.Empty<string>(), Enumerable.Empty<string>(), null, cts.Token);
                         Assert.Fail();
                     }
                     catch (OperationCanceledException ex)
@@ -265,7 +265,7 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
         public void TestCreateGetPredictionsQueryStringWhenEmpty()
         {
             // Arrange
-            var stopIds = Enumerable.Empty<string>();
+            var stopIds = Enumerable.Empty<int>();
             var routeIds = Enumerable.Empty<string>();
             var vehicleIds = Enumerable.Empty<string>();
             int? top = null;
@@ -282,7 +282,7 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
         public void TestCreateGetPredictionsQueryStringWhenNull()
         {
             // Arrange
-            IEnumerable<string> stopIds = null;
+            IEnumerable<int> stopIds = null;
             IEnumerable<string> routeIds = null;
             IEnumerable<string> vehicleIds = null;
             int? top = null;
@@ -299,7 +299,7 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
         public void TestCreateGetPredictionsQueryString()
         {
             // Arrange
-            IEnumerable<string> stopIds = null;
+            IEnumerable<int> stopIds = null;
             IEnumerable<string> routeIds = new[] { "apple jacks" };
             IEnumerable<string> vehicleIds = new[] { "foo", "bar" }; ;
             int? top = 343;

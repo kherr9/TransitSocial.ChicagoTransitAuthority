@@ -160,7 +160,7 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker
         /// <param name="vehicleIds"></param>
         /// <param name="top"></param>
         /// <returns></returns>
-        IEnumerable<Prediction> GetPredictions(IEnumerable<string> stopIds, IEnumerable<string> routeIds, IEnumerable<string> vehicleIds, int? top);
+        IEnumerable<Prediction> GetPredictions(IEnumerable<int> stopIds, IEnumerable<string> routeIds, IEnumerable<string> vehicleIds, int? top);
 
         /// <summary>
         /// Use the getpredictions request to retrieve predictions for one or more stops or one or more vehicles.
@@ -181,7 +181,7 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker
         /// <param name="vehicleIds"></param>
         /// <param name="top"></param>
         /// <returns></returns>
-        Task<IEnumerable<Prediction>> GetPredictionsAsync(IEnumerable<string> stopIds, IEnumerable<string> routeIds, IEnumerable<string> vehicleIds, int? top);
+        Task<IEnumerable<Prediction>> GetPredictionsAsync(IEnumerable<int> stopIds, IEnumerable<string> routeIds, IEnumerable<string> vehicleIds, int? top);
 
         /// <summary>
         /// Use the getpredictions request to retrieve predictions for one or more stops or one or more vehicles.
@@ -203,7 +203,7 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker
         /// <param name="vehicleIds"></param>
         /// <param name="top"></param>
         /// <returns></returns>
-        Task<IEnumerable<Prediction>> GetPredictionsAsync(IEnumerable<string> stopIds, IEnumerable<string> routeIds, IEnumerable<string> vehicleIds, int? top, CancellationToken token);
+        Task<IEnumerable<Prediction>> GetPredictionsAsync(IEnumerable<int> stopIds, IEnumerable<string> routeIds, IEnumerable<string> vehicleIds, int? top, CancellationToken token);
 
         /// <summary>
         /// Use the getservicebulletins for a list of service bulletins that are in effect for a route(s) (rt), route &
