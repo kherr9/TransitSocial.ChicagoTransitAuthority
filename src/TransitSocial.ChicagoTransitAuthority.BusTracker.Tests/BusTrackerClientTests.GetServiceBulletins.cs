@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -71,6 +71,189 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
             var actualServiceBulletinNames = serviceBulletins.Select(x => x.Name).ToList();
 
             CollectionAssert.AreEqual(expectedServiceBulletinNames, actualServiceBulletinNames);
+        }
+
+        #endregion
+
+        #region "GetServiceBulletinsAsync"
+
+        [TestMethod]
+        public void TestGetServiceBulletinsAsyncInvalidApiToken()
+        {
+            // Arrange
+            const string InvalidApiToken = "INVALID_API_TOKEN";
+            var client = new BusTrackerClient(UrlBase, InvalidApiToken);
+
+            var expectedModel = this.repository.GetAs<GetServiceBulletinResponse>(ResourceFiles.GetServiceBulletinsResponseInvalidApiAccess);
+
+            Exception exception = null;
+
+            // Act
+            StartOwinTest(
+                async () =>
+                {
+                    try
+                    {
+                        var serviceBulletins = await client.GetServiceBulletinsAsync(Enumerable.Empty<string>(), null, Enumerable.Empty<string>());
+                        Assert.Fail("Exception thrown exception");
+                    }
+                    catch (Exception ex)
+                    {
+                        exception = ex;
+                    }
+                });
+
+            // Assert
+            Assert.IsNotNull(exception);
+            Assert.AreEqual(expectedModel.Errors.Select(e => e.Message).First(), exception.Message);
+        }
+
+        [TestMethod]
+        public void TestGetServiceBulletinsAsyncInvalidApiTokenWithCancellationToken()
+        {
+            // Arrange
+            const string InvalidApiToken = "INVALID_API_TOKEN";
+            var client = new BusTrackerClient(UrlBase, InvalidApiToken);
+
+            var expectedModel = this.repository.GetAs<GetServiceBulletinResponse>(ResourceFiles.GetServiceBulletinsResponseInvalidApiAccess);
+
+            Exception exception = null;
+
+            var cts = new CancellationTokenSource();
+
+            // Act
+            StartOwinTest(
+                async () =>
+                {
+                    try
+                    {
+                        var serviceBulletins = await client.GetServiceBulletinsAsync(Enumerable.Empty<string>(), null, Enumerable.Empty<string>(), cts.Token);
+                        Assert.Fail("Exception thrown exception");
+                    }
+                    catch (Exception ex)
+                    {
+                        exception = ex;
+                    }
+                });
+
+            // Assert
+            Assert.IsNotNull(exception);
+            Assert.AreEqual(expectedModel.Errors.Select(e => e.Message).First(), exception.Message);
+        }
+
+        [TestMethod]
+        public void TestGetServiceBulletinsAsyncInvalidApiTokenWithCancelledCancellationToken()
+        {
+            // Arrange
+            const string InvalidApiToken = "INVALID_API_TOKEN";
+            var client = new BusTrackerClient(UrlBase, InvalidApiToken);
+
+            var expectedModel = this.repository.GetAs<GetServiceBulletinResponse>(ResourceFiles.GetServiceBulletinsResponseInvalidApiAccess);
+
+            OperationCanceledException exception = null;
+
+            var cts = new CancellationTokenSource();
+            cts.Cancel();
+
+            // Act
+            StartOwinTest(
+                async () =>
+                {
+                    try
+                    {
+                        var serviceBulletins = await client.GetServiceBulletinsAsync(Enumerable.Empty<string>(), null, Enumerable.Empty<string>(), cts.Token);
+                        Assert.Fail("Exception thrown exception");
+                    }
+                    catch (OperationCanceledException ex)
+                    {
+                        exception = ex;
+                    }
+                });
+
+            // Assert
+            Assert.IsNotNull(exception);
+        }
+
+        [TestMethod]
+        public void TestGetServiceBulletinsAsync()
+        {
+            // Arrange
+            var client = new BusTrackerClient(UrlBase, WebAppConfig.ApiKey);
+
+            var expectedModel = this.repository.GetAs<GetServiceBulletinResponse>(ResourceFiles.GetServiceBulletinsResponse);
+
+            IEnumerable<ServiceBulletin> serviceBulletins = null;
+
+            // Act
+            StartOwinTest(
+                async () =>
+                {
+                    serviceBulletins = await client.GetServiceBulletinsAsync(Enumerable.Empty<string>(), null, Enumerable.Empty<string>());
+                });
+
+            // Assert
+            var expectedServiceBulletinNames = expectedModel.ServiceBulletins.Select(x => x.Name).ToList();
+            var actualServiceBulletinNames = serviceBulletins.Select(x => x.Name).ToList();
+
+            CollectionAssert.AreEqual(expectedServiceBulletinNames, actualServiceBulletinNames);
+        }
+
+        [TestMethod]
+        public void TestGetServiceBulletinsAsyncWithCancellationToken()
+        {
+            // Arrange
+            var client = new BusTrackerClient(UrlBase, WebAppConfig.ApiKey);
+
+            var expectedModel = this.repository.GetAs<GetServiceBulletinResponse>(ResourceFiles.GetServiceBulletinsResponse);
+
+            var cts = new CancellationTokenSource();
+
+            IEnumerable<ServiceBulletin> serviceBulletins = null;
+
+            // Act
+            StartOwinTest(
+                async () =>
+                {
+                    serviceBulletins = await client.GetServiceBulletinsAsync(Enumerable.Empty<string>(), null, Enumerable.Empty<string>(), cts.Token);
+                });
+
+            // Assert
+            var expectedServiceBulletinNames = expectedModel.ServiceBulletins.Select(x => x.Name).ToList();
+            var actualServiceBulletinNames = serviceBulletins.Select(x => x.Name).ToList();
+
+            CollectionAssert.AreEqual(expectedServiceBulletinNames, actualServiceBulletinNames);
+        }
+
+        [TestMethod]
+        public void TestGetServiceBulletinsAsyncWithCancelledCancellationToken()
+        {
+            // Arrange
+            var client = new BusTrackerClient(UrlBase, WebAppConfig.ApiKey);
+
+            var expectedModel = this.repository.GetAs<GetServiceBulletinResponse>(ResourceFiles.GetServiceBulletinsResponse);
+
+            var cts = new CancellationTokenSource();
+            cts.Cancel();
+
+            OperationCanceledException exception = null;
+
+            // Act
+            StartOwinTest(
+                async () =>
+                {
+                    try
+                    {
+                        var serviceBulletins = await client.GetServiceBulletinsAsync(Enumerable.Empty<string>(), null, Enumerable.Empty<string>(), cts.Token);
+                    }
+                    catch (OperationCanceledException ex)
+                    {
+                        exception = ex;
+                    }
+
+                });
+
+            // Assert
+            Assert.IsNotNull(exception);
         }
 
         #endregion
