@@ -208,6 +208,25 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
                                 await ctx.Response.WriteAsync(xml);
                             });
                     });
+
+                appBuilder.Map("/bustime/api/v1/getservicebulletins",
+                    map =>
+                    {
+                        map.Run(
+                            async ctx =>
+                            {
+                                var xml = repository.GetString(ResourceFiles.GetServiceBulletinsResponse);
+
+                                // status code
+                                ctx.Response.StatusCode = 200;
+
+                                // headers
+                                ctx.Response.Headers.Add("Content-Type", new[] { "text/xml;charset=utf-8" });
+
+                                // content
+                                await ctx.Response.WriteAsync(xml);
+                            });
+                    });
             }
         }
 

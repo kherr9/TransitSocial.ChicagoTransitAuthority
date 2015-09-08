@@ -204,5 +204,45 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker
         /// <param name="top"></param>
         /// <returns></returns>
         Task<IEnumerable<Prediction>> GetPredictionsAsync(IEnumerable<string> stopIds, IEnumerable<string> routeIds, IEnumerable<string> vehicleIds, int? top, CancellationToken token);
+
+        /// <summary>
+        /// Use the getservicebulletins for a list of service bulletins that are in effect for a route(s) (rt), route &
+        /// direction (rt & rtdir), route & direction & stop (rt & rtdir & stpid), or stop(s) (stpid). At a minimum, the
+        /// rt or stpid parameter must be specified.
+        /// A service bulletin (sb) definition without a srvc element indicates a "system-wide" service bulletin.
+        /// System-wide service bulletins are valid for all routes/stops in the system.
+        /// </summary>
+        /// <param name="routeIds"></param>
+        /// <param name="routeDirection"></param>
+        /// <param name="stopIds"></param>
+        /// <returns></returns>
+        IEnumerable<ServiceBulletin> GetServiceBulletins(IEnumerable<string> routeIds, string routeDirection, IEnumerable<string> stopIds);
+
+        /// <summary>
+        /// Use the getservicebulletins for a list of service bulletins that are in effect for a route(s) (rt), route &
+        /// direction (rt & rtdir), route & direction & stop (rt & rtdir & stpid), or stop(s) (stpid). At a minimum, the
+        /// rt or stpid parameter must be specified.
+        /// A service bulletin (sb) definition without a srvc element indicates a "system-wide" service bulletin.
+        /// System-wide service bulletins are valid for all routes/stops in the system.
+        /// </summary>
+        /// <param name="routeIds"></param>
+        /// <param name="routeDirection"></param>
+        /// <param name="stopIds"></param>
+        /// <returns></returns>
+        Task<IEnumerable<ServiceBulletin>> GetServiceBulletinsAsync(IEnumerable<string> routeIds, string routeDirection, IEnumerable<string> stopIds);
+
+        /// <summary>
+        /// Use the getservicebulletins for a list of service bulletins that are in effect for a route(s) (rt), route &
+        /// direction (rt & rtdir), route & direction & stop (rt & rtdir & stpid), or stop(s) (stpid). At a minimum, the
+        /// rt or stpid parameter must be specified.
+        /// A service bulletin (sb) definition without a srvc element indicates a "system-wide" service bulletin.
+        /// System-wide service bulletins are valid for all routes/stops in the system.
+        /// </summary>
+        /// <param name="routeIds"></param>
+        /// <param name="routeDirection"></param>
+        /// <param name="stopIds"></param>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        Task<IEnumerable<ServiceBulletin>> GetServiceBulletinsAsync(IEnumerable<string> routeIds, string routeDirection, IEnumerable<string> stopIds, CancellationToken token);
     }
 }
