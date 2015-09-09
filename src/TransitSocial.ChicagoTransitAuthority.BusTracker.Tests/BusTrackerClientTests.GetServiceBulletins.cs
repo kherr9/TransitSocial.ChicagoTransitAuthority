@@ -31,7 +31,7 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
                 {
                     try
                     {
-                        var serviceBulletins = client.GetServiceBulletins(Enumerable.Empty<string>(), null, Enumerable.Empty<string>());
+                        var serviceBulletins = client.GetServiceBulletins(Enumerable.Empty<string>(), null, Enumerable.Empty<int>());
                         Assert.Fail("Exception thrown exception");
                     }
                     catch (Exception ex)
@@ -61,7 +61,7 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
             StartOwinTest(
                 () =>
                 {
-                    serviceBulletins = client.GetServiceBulletins(Enumerable.Empty<string>(), null, Enumerable.Empty<string>());
+                    serviceBulletins = client.GetServiceBulletins(Enumerable.Empty<string>(), null, Enumerable.Empty<int>());
 
                     return Task.FromResult(true);
                 });
@@ -94,7 +94,7 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
                 {
                     try
                     {
-                        var serviceBulletins = await client.GetServiceBulletinsAsync(Enumerable.Empty<string>(), null, Enumerable.Empty<string>());
+                        var serviceBulletins = await client.GetServiceBulletinsAsync(Enumerable.Empty<string>(), null, Enumerable.Empty<int>());
                         Assert.Fail("Exception thrown exception");
                     }
                     catch (Exception ex)
@@ -127,7 +127,7 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
                 {
                     try
                     {
-                        var serviceBulletins = await client.GetServiceBulletinsAsync(Enumerable.Empty<string>(), null, Enumerable.Empty<string>(), cts.Token);
+                        var serviceBulletins = await client.GetServiceBulletinsAsync(Enumerable.Empty<string>(), null, Enumerable.Empty<int>(), cts.Token);
                         Assert.Fail("Exception thrown exception");
                     }
                     catch (Exception ex)
@@ -161,7 +161,7 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
                 {
                     try
                     {
-                        var serviceBulletins = await client.GetServiceBulletinsAsync(Enumerable.Empty<string>(), null, Enumerable.Empty<string>(), cts.Token);
+                        var serviceBulletins = await client.GetServiceBulletinsAsync(Enumerable.Empty<string>(), null, Enumerable.Empty<int>(), cts.Token);
                         Assert.Fail("Exception thrown exception");
                     }
                     catch (OperationCanceledException ex)
@@ -188,7 +188,7 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
             StartOwinTest(
                 async () =>
                 {
-                    serviceBulletins = await client.GetServiceBulletinsAsync(Enumerable.Empty<string>(), null, Enumerable.Empty<string>());
+                    serviceBulletins = await client.GetServiceBulletinsAsync(Enumerable.Empty<string>(), null, Enumerable.Empty<int>());
                 });
 
             // Assert
@@ -214,7 +214,7 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
             StartOwinTest(
                 async () =>
                 {
-                    serviceBulletins = await client.GetServiceBulletinsAsync(Enumerable.Empty<string>(), null, Enumerable.Empty<string>(), cts.Token);
+                    serviceBulletins = await client.GetServiceBulletinsAsync(Enumerable.Empty<string>(), null, Enumerable.Empty<int>(), cts.Token);
                 });
 
             // Assert
@@ -243,7 +243,7 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
                 {
                     try
                     {
-                        var serviceBulletins = await client.GetServiceBulletinsAsync(Enumerable.Empty<string>(), null, Enumerable.Empty<string>(), cts.Token);
+                        var serviceBulletins = await client.GetServiceBulletinsAsync(Enumerable.Empty<string>(), null, Enumerable.Empty<int>(), cts.Token);
                     }
                     catch (OperationCanceledException ex)
                     {
@@ -266,7 +266,7 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
             // Arrange
             var routeIds = Enumerable.Empty<string>();
             string routeDirection = null;
-            var stopIds = Enumerable.Empty<string>();
+            var stopIds = Enumerable.Empty<int>();
 
             // Act
             var collection = BusTrackerClient.CreateGetServiceBulletinsQueryString(routeIds, routeDirection, stopIds);
@@ -282,7 +282,7 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
             // Arrange
             IEnumerable<string> routeIds = null;
             string routeDirection = null;
-            IEnumerable<string> stopIds = null;
+            IEnumerable<int> stopIds = null;
 
             // Act
             var collection = BusTrackerClient.CreateGetServiceBulletinsQueryString(routeIds, routeDirection, stopIds);
@@ -298,14 +298,14 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker.Tests
             // Arrange
             IEnumerable<string> routeIds = new[] { "1123 J" };
             string routeDirection = "North Bound";
-            IEnumerable<string> stopIds = new[] { "123", "123 H" };
+            IEnumerable<int> stopIds = new[] { 123, 555 };
 
             // Act
             var collection = BusTrackerClient.CreateGetServiceBulletinsQueryString(routeIds, routeDirection, stopIds);
 
             // Assert
             Assert.IsNotNull(collection);
-            Assert.AreEqual("rt=1123+J&rtdir=North+Bound&stpid=123%2c123+H", collection.ToString());
+            Assert.AreEqual("rt=1123+J&rtdir=North+Bound&stpid=123%2c555", collection.ToString());
         }
 
         #endregion

@@ -216,7 +216,7 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker
         /// <param name="routeDirection"></param>
         /// <param name="stopIds"></param>
         /// <returns></returns>
-        IEnumerable<ServiceBulletin> GetServiceBulletins(IEnumerable<string> routeIds, string routeDirection, IEnumerable<string> stopIds);
+        IEnumerable<ServiceBulletin> GetServiceBulletins(IEnumerable<string> routeIds, string routeDirection, IEnumerable<int> stopIds);
 
         /// <summary>
         /// Use the getservicebulletins for a list of service bulletins that are in effect for a route(s) (rt), route &
@@ -229,7 +229,7 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker
         /// <param name="routeDirection"></param>
         /// <param name="stopIds"></param>
         /// <returns></returns>
-        Task<IEnumerable<ServiceBulletin>> GetServiceBulletinsAsync(IEnumerable<string> routeIds, string routeDirection, IEnumerable<string> stopIds);
+        Task<IEnumerable<ServiceBulletin>> GetServiceBulletinsAsync(IEnumerable<string> routeIds, string routeDirection, IEnumerable<int> stopIds);
 
         /// <summary>
         /// Use the getservicebulletins for a list of service bulletins that are in effect for a route(s) (rt), route &
@@ -243,6 +243,6 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker
         /// <param name="stopIds"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        Task<IEnumerable<ServiceBulletin>> GetServiceBulletinsAsync(IEnumerable<string> routeIds, string routeDirection, IEnumerable<string> stopIds, CancellationToken token);
+        Task<IEnumerable<ServiceBulletin>> GetServiceBulletinsAsync(IEnumerable<string> routeIds, string routeDirection, IEnumerable<int> stopIds, CancellationToken token);
     }
 }
