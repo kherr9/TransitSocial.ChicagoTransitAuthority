@@ -10,7 +10,7 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker
 {
     public partial class BusTrackerClient
     {
-        public IEnumerable<ServiceBulletin> GetServiceBulletins(IEnumerable<string> routeIds, string routeDirection, IEnumerable<string> stopIds)
+        public IEnumerable<ServiceBulletin> GetServiceBulletins(IEnumerable<string> routeIds, string routeDirection, IEnumerable<int> stopIds)
         {
             var request = this.CreateRequest(
                 "/bustime/api/v1/getservicebulletins",
@@ -38,12 +38,12 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker
             }
         }
 
-        public Task<IEnumerable<ServiceBulletin>> GetServiceBulletinsAsync(IEnumerable<string> routeIds, string routeDirection, IEnumerable<string> stopIds)
+        public Task<IEnumerable<ServiceBulletin>> GetServiceBulletinsAsync(IEnumerable<string> routeIds, string routeDirection, IEnumerable<int> stopIds)
         {
             return this.GetServiceBulletinsAsync(routeIds, routeDirection, stopIds, CancellationToken.None);
         }
 
-        public async Task<IEnumerable<ServiceBulletin>> GetServiceBulletinsAsync(IEnumerable<string> routeIds, string routeDirection, IEnumerable<string> stopIds, CancellationToken token)
+        public async Task<IEnumerable<ServiceBulletin>> GetServiceBulletinsAsync(IEnumerable<string> routeIds, string routeDirection, IEnumerable<int> stopIds, CancellationToken token)
         {
             var request = this.CreateRequest(
                 "/bustime/api/v1/getservicebulletins",
@@ -74,7 +74,7 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker
         internal static NameValueCollection CreateGetServiceBulletinsQueryString(
             IEnumerable<string> routeIds,
             string routeDirection,
-            IEnumerable<string> stopIds)
+            IEnumerable<int> stopIds)
         {
             var queryString = CreateQueryStringCollection();
 

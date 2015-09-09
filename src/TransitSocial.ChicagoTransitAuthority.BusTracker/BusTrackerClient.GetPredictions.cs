@@ -11,7 +11,7 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker
     public partial class BusTrackerClient
     {
         public IEnumerable<Prediction> GetPredictions(
-            IEnumerable<string> stopIds,
+            IEnumerable<int> stopIds,
             IEnumerable<string> routeIds,
             IEnumerable<string> vehicleIds,
             int? top)
@@ -41,7 +41,7 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker
         }
 
         public Task<IEnumerable<Prediction>> GetPredictionsAsync(
-            IEnumerable<string> stopIds,
+            IEnumerable<int> stopIds,
             IEnumerable<string> routeIds,
             IEnumerable<string> vehicleIds,
             int? top)
@@ -50,7 +50,7 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker
         }
 
         public async Task<IEnumerable<Prediction>> GetPredictionsAsync(
-            IEnumerable<string> stopIds,
+            IEnumerable<int> stopIds,
             IEnumerable<string> routeIds,
             IEnumerable<string> vehicleIds,
             int? top,
@@ -80,7 +80,7 @@ namespace TransitSocial.ChicagoTransitAuthority.BusTracker
             }
         }
 
-        internal static NameValueCollection CreateGetPredictionsQueryString(IEnumerable<string> stopIds, IEnumerable<string> routeIds, IEnumerable<string> vehicleIds, int? top)
+        internal static NameValueCollection CreateGetPredictionsQueryString(IEnumerable<int> stopIds, IEnumerable<string> routeIds, IEnumerable<string> vehicleIds, int? top)
         {
             var queryString = CreateQueryStringCollection();
 
